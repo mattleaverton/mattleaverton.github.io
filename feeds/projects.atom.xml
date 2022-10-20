@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Matt Leaverton - Projects</title><link href="https://www.mattleaverton.com/" rel="alternate"/><link href="https://www.mattleaverton.com/feeds/projects.atom.xml" rel="self"/><id>https://www.mattleaverton.com/</id><updated>2022-09-05T22:18:00-05:00</updated><entry><title>OpenCV Explorer</title><link href="https://www.mattleaverton.com/posts/2021/Nov/11/opencv-explorer" rel="alternate"/><published>2021-11-11T22:18:00-06:00</published><updated>2022-09-05T22:18:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2021-11-11:/posts/2021/Nov/11/opencv-explorer</id><summary type="html">&lt;p&gt;Simplify prototyping in OpenCV&lt;/p&gt;</summary><content type="html">&lt;p&gt;There is little more overwhelming than the blank page of a new image processing project. Looking
+at the white canvas of OpenCV can be tricky, even with a plan in mind. This will be a tool
+to ease initializing a project and aid in exploring and tweaking image processing solutions
+in a slick, persistent GUI setting.&lt;/p&gt;
+&lt;h3&gt;View:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Live view &lt;/li&gt;
+&lt;li&gt;Toggle to raw view (unprocessed); side-by-side?&lt;/li&gt;
+&lt;li&gt;Intermediate image views assignable (pack the images in and organize together)&lt;/li&gt;
+&lt;li&gt;Pan, Zoom available and controllable with mouse, keyboard, finger&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Editor:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;All opencv methods available&lt;/li&gt;
+&lt;li&gt;Useful or regular usage items assigned shortcut names&lt;/li&gt;
+&lt;li&gt;Certain useful functions aliased for quick use (resize, to black and white, save to file)&lt;/li&gt;
+&lt;li&gt;Can use unix -x or list args in order&lt;/li&gt;
+&lt;li&gt;Can take video or image sources as input&lt;/li&gt;
+&lt;li&gt;Syntax errors are noted on a line and ignored (rest of script unaffected)&lt;/li&gt;
+&lt;li&gt;Variable assignment (save this output for use later by name)&lt;ul&gt;
+&lt;li&gt;Indexable for multi-output methods?&lt;/li&gt;
+&lt;li&gt;Raw image is auto assigned a variable like %RAW% or similar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Show line numbers&lt;/li&gt;
+&lt;li&gt;Swap lines, duplicate lines, delete, cut/paste whole lines from keyboard shortcuts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Help / Learn:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Searchable knowledge base of methods and syntax&lt;/li&gt;
+&lt;li&gt;Show info about active command in the editor&lt;/li&gt;
+&lt;li&gt;Browseable compendium of all opencv commands with description, args, and shortcuts (if applicable)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Factory / Filter / Modifier:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Group all objects together in a folder&lt;/li&gt;
+&lt;li&gt;File per modifier (opencv command)&lt;/li&gt;
+&lt;li&gt;Object handles syntax, argument distribution, inputs/outputs&lt;/li&gt;
+&lt;li&gt;Object handles code generation&lt;/li&gt;
+&lt;li&gt;Need a destruct for when it is removed (e.g. stop video capture)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Export&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Code generation on demand (Python)&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Projects"/><category term="software"/><category term="opencv"/><category term="python"/></entry><entry><title>Hyperlocal GPS Traffic</title><link href="https://www.mattleaverton.com/posts/2021/Apr/17/hyperlocal-gps-traffic" rel="alternate"/><published>2021-04-17T16:45:00-05:00</published><updated>2021-10-09T16:45:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2021-04-17:/posts/2021/Apr/17/hyperlocal-gps-traffic</id><summary type="html">&lt;p&gt;The solution you did not know you needed to the problem you did not know you had&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;What:&lt;/strong&gt; Track traffic on your commute by monitoring speed and time with GPS 
+and a switch to know which lane the car is in.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why:&lt;/strong&gt; Know when to change lanes for the optimal commute.&lt;/p&gt;
+&lt;h3&gt;Parts&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.sparkfun.com/products/15210" target="_blank"&gt;SAM-M8Q GPS Breakout Board&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.pjrc.com/store/teensy41.html" target="_blank"&gt;Teensy 4.1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;SD Card for logging&lt;/li&gt;
+&lt;li&gt;USB Car Charger&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Projects"/></entry><entry><title>Backyard Playset</title><link href="https://www.mattleaverton.com/posts/2021/Jan/05/backyard-playset" rel="alternate"/><published>2021-01-05T22:32:00-06:00</published><updated>2021-06-10T22:32:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2021-01-05:/posts/2021/Jan/05/backyard-playset</id><summary type="html">&lt;p&gt;Play structure for play and for hammock&lt;/p&gt;</summary><content type="html">&lt;p&gt;As with all worthwhile projects, this one begins with a request for permission from the HOA to build something
+in my own backyard. Started with the "Obstacle Course" from &lt;a href="https://www.diytyler.com/shop/obstacle-course/" target="_blank"&gt;DIYTyler&lt;/a&gt; 
+and made some changes to suit our needs.&lt;/p&gt;
+&lt;p&gt;Ordered all lumber online just in time before prices went crazy. I will also never order lumber any way other than online 
+if possible. &lt;a href="https://www.mattleaverton.com/posts/2017/Sep/03/garage-workbench"&gt;Last time&lt;/a&gt; I picked up my own lumber in person, I rented a truck and spent several
+hours wrestling 4x8 sheets of plywood alone in the aisles of Home Depot. This time, a pallet full of exactly everything
+I needed was delivered directly onto my driveway. It took nearly two hours to move the lumber from my driveway inside the garage - no telling
+how long it would have taken to pick it up myself from the store. Due to the weight of the lumber, I got to replace the &lt;a href="https://www.amazon.com/gp/product/B01NBETQB8" target="_blank"&gt;wheels&lt;/a&gt;
+with &lt;a href="https://www.amazon.com/gp/product/B07V1NTLDP" target="_blank"&gt;decent casters&lt;/a&gt; on my workbench.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Playset Lumber" class="image-process-inline" src="/images/playset/derivatives/inline/lumber.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Playset Frame" class="image-process-inline" src="/images/playset/derivatives/inline/frame.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Playset Progress" class="image-process-inline" src="/images/playset/derivatives/inline/progress.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Took a break when the state froze solid for a few days and took the power with it&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Playset Frozen" class="image-process-inline" src="/images/playset/derivatives/inline/frozen.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;The best part of the whole project - space to hang a hammock. This is MKII of hammock hanging
+solution - initially tried hanging with wire rope to a painful conclusion. Successfully used
+hooks for a &lt;a href="https://www.amazon.com/gp/product/B07SSKPKWN" target="_blank"&gt;porch swing&lt;/a&gt;, which are 
+perfectly spaced for my &lt;a href="https://eaglesnestoutfittersinc.com/products/doublenest-hammock?variant=41567315984533" target="_blank"&gt;hammock&lt;/a&gt;
+to clip directly into (as I did, in fact, ensure the dimensions of the playset would be ideal for hammock hanging).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Playset Hammock" class="image-process-inline" src="/images/playset/derivatives/inline/hammock.jpg"/&gt;&lt;/p&gt;</content><category term="Projects"/><category term="woodworking"/></entry><entry><title>Womble Guitar</title><link href="https://www.mattleaverton.com/posts/2018/Sep/25/womble-guitar" rel="alternate"/><published>2018-09-25T22:34:00-05:00</published><updated>2020-01-01T22:34:00-06:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2018-09-25:/posts/2018/Sep/25/womble-guitar</id><summary type="html">&lt;p&gt;Custom electric guitar&lt;/p&gt;</summary><content type="html">&lt;p&gt;Original design - cross between Yamaha Revstar and Danelectro 4011&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Womble test cut" class="image-process-inline" src="/images/derivatives/inline/womble-test-cut.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Womble pickguard test" class="image-process-inline" src="/images/derivatives/inline/womble-pickguard.jpg"/&gt;&lt;/p&gt;
+&lt;h3&gt;Part Specifications&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Body - Basswood&lt;/li&gt;
+&lt;li&gt;Neck - Maple&lt;/li&gt;
+&lt;li&gt;Fretboard - Maple&lt;/li&gt;
+&lt;li&gt;Pickups - &lt;a href="https://www.fishman.com/portfolio/fluence-classic-6-string-humbucker-pickups/" target="_blank"&gt;Fishman Fluent Classic Humbuckers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tuners - &lt;a href="https://graphtech.com/products/ratio-electric-locking-machine-heads-3-per-side" target="_blank"&gt;3+3 Ratio Electric Locking Machine Heads&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Bridge - &lt;a href="https://www.guitarfetish.com/Chrome-Badass-Style-Intonatable-wraparound-bridge_p_153.html" target="_blank"&gt;GFS B18 Chrome Badass Style&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Truss Rod - &lt;a href="https://www.stewmac.com/luthier-tools-and-supplies/materials/truss-rods/adjustable-truss-rods/hot-rod-low-profile-2-way-truss-rod/" target="_blank"&gt;Hot Rod Low-profile 2-Way Truss Rod&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Pickguard - &lt;a href="https://www.stewmac.com/luthier-tools-and-supplies/materials/pickguard-materials/whitebw-laminated-pickguard-materials/" target="_blank"&gt;Here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Knobs - &lt;a href="https://usa.yamaha.com/products/musical_instruments/guitars_basses/el_guitars/rs/lineup.html" target="_blank"&gt;Yamaha Revstar&lt;/a&gt; Volume Knob ZR238000 (ordered &lt;a href="https://www.yamaha24x7.com" target="_blank"&gt;direct from Yamaha&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Finish - &lt;a href="https://usa.specialistpaints.com/products/bmw-aerosol-can-colors?_pos=2&amp;amp;_sid=00e066692&amp;amp;_ss=r&amp;amp;variant=40365084737715" target="_blank"&gt;BMW Urban Green&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Projects"/><category term="woodworking"/><category term="guitars"/></entry><entry><title>Garage Workbench</title><link href="https://www.mattleaverton.com/posts/2017/Sep/03/garage-workbench" rel="alternate"/><published>2017-09-03T22:31:00-05:00</published><updated>2017-09-29T22:31:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2017-09-03:/posts/2017/Sep/03/garage-workbench</id><summary type="html"/><content type="html">&lt;p&gt;&lt;a href="https://www.chrisfinke.com/2014/05/26/i-built-a-rolling-workbench/" target="_blank"&gt;Design&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Jun 4, 6, 14, 2012 - built desk - the precursor - for Jonathan?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Workbench Progress" class="image-process-inline" src="/images/derivatives/inline/work-bench-1.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Completed and in use for several years &lt;/p&gt;
+&lt;p&gt;Destroyed cheap casters with lumber for &lt;a href="https://www.mattleaverton.com/posts/2021/Jan/05/backyard-playset"&gt;playset&lt;/a&gt;&lt;/p&gt;</content><category term="Projects"/><category term="woodworking"/></entry><entry><title>Seat Monitor</title><link href="https://www.mattleaverton.com/posts/2015/Sep/28/seat-monitor" rel="alternate"/><published>2015-09-28T14:59:00-05:00</published><updated>2016-03-30T14:59:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2015-09-28:/posts/2015/Sep/28/seat-monitor</id><summary type="html">&lt;p&gt;Remind yourself to take a sitting break&lt;/p&gt;</summary><content type="html">&lt;p&gt;Side contract prototype project for a friend of a friend in medical school to create a monitor to
+alert you when you have been sitting for too long. The prototype used an &lt;a href="https://www.ti.com/product/MSP430G2553/part-details/MSP430G2553IN20" target="_blank"&gt;MSP430&lt;/a&gt; for brains with a 
+&lt;a href="https://www.surveillance-video.com/security-925.html" target="_blank"&gt;pressure sensor mat&lt;/a&gt; that could be sewn into a seat cushion to detect whether the user was
+sitting or standing. After a user had been seated for &lt;configurable length="" of="" time=""&gt;, a buzzer would
+remind the user to stand up and take a break.&lt;/configurable&gt;&lt;/p&gt;</content><category term="Projects"/><category term="electronics"/></entry><entry><title>CNC Router</title><link href="https://www.mattleaverton.com/posts/2014/Nov/24/cnc-router" rel="alternate"/><published>2014-11-24T14:56:00-06:00</published><updated>2019-10-05T14:56:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2014-11-24:/posts/2014/Nov/24/cnc-router</id><summary type="html">&lt;p&gt;Garage CNC&lt;/p&gt;</summary><content type="html">&lt;p&gt;Dropbox / Etc / CNC&lt;/p&gt;
+&lt;p&gt;Backed the &lt;a href="http://smoothieware.org/" target="_blank"&gt;Smoothieboard v1&lt;/a&gt;
+&lt;a href="https://www.kickstarter.com/projects/logxen/smoothieboard-the-future-of-cnc-motion-control" target="_blank"&gt;Kickstarter&lt;/a&gt; 
+in 2013&lt;/p&gt;
+&lt;h3&gt;Phase 1:&lt;/h3&gt;
+&lt;p&gt;Your Inventables Order Confirmation (#kd3vc6b)
+Shapeoko kit
+Smoothieboard + stepper motors&lt;/p&gt;
+&lt;h3&gt;Phase 2:&lt;/h3&gt;
+&lt;p&gt;Growth from 500mm to 1000mm&lt;/p&gt;
+&lt;p&gt;Wiring pictures Aug 3, 2016&lt;/p&gt;
+&lt;p&gt;Feb 8 2017 order for 4 conductor wire from home depot&lt;/p&gt;
+&lt;h3&gt;Phase 3:&lt;/h3&gt;
+&lt;p&gt;Installation in garage
+Rail stabilizers
+Vacuum setup
+Electronics enclosure + RPI&lt;/p&gt;
+&lt;p&gt;Dec 20, 2017
+Photos Jan 13, 2018&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CNC control box" class="image-process-inline" src="/images/derivatives/inline/cnc-control.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CNC guts" class="image-process-inline" src="/images/derivatives/inline/cnc-guts.jpg"/&gt;&lt;/p&gt;</content><category term="Projects"/><category term="woodworking"/></entry><entry><title>Sonic Screwdriver</title><link href="https://www.mattleaverton.com/posts/2012/Oct/27/sonic-screwdriver" rel="alternate"/><published>2012-10-27T14:40:00-05:00</published><updated>2012-10-27T14:40:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2012-10-27:/posts/2012/Oct/27/sonic-screwdriver</id><summary type="html">&lt;p&gt;Quick-turn halloween prop tribute to the best doctor&lt;/p&gt;</summary><content type="html">&lt;p&gt;For Halloween 2012 I received a day-of invitation to a costume party and had nothing to wear. My roommates had
+recently introduced me to Doctor Who, and I was obsessed (here's to you &lt;a href="https://www.filmofilia.com/wp-content/uploads/2013/03/David-Tennant.jpg" target="_blank"&gt;David Tennant&lt;/a&gt;. My standard
+glasses matched his surprisingly well, and a nice trench coat score from the thrift store clinched it. As every self-respecting
+Whovian knows, no costume is complete without the handiest deus-ex-machina - the Sonic Screwdriver.&lt;/p&gt;
+&lt;p&gt;Minimal time to spare left me with around the house scrounging for parts. A highlighter wrapped in foil for the body, a tube from a ballpoint pin,
+a blue decorative jewel from a craft store, &lt;a href="https://web.archive.org/web/20110330045431/https://www.inventables.com/technologies/hand-moldable-plastic" target="_blank"&gt;hand moldable plastic&lt;/a&gt;
+from an investigative order from Inventables, and a 9V battery for power made for the case - assembled with a generous helping of
+hot glue.&lt;/p&gt;
+&lt;p&gt;Thanks to my high school employer &lt;a href="https://web.archive.org/web/20211201205101/http://aeandl.com/" target="_blank"&gt;Accent Engineering&lt;/a&gt;, I 
+had a decently stocked parts cabinet. In short order I had a few 555 timers, a piezo buzzer, and enough passives to
+build an &lt;a href="https://www.jameco.com/Jameco/workshop/DIY/atari-punk-console.html" target="_blank"&gt;Atari Punk Console Synth&lt;/a&gt; that 
+sounded nicely like a sonic screwdriver. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="APC sync schematic" class="image-process-inline" src="/images/derivatives/inline/apc-synth.png"/&gt;&lt;/p&gt;
+&lt;p&gt;I dremeled out space for a button in the side of the highlighter case, then crammed 
+the electronics inside. I enveloped the 9V battery in moldable plastic and stuck it onto the tail end of the assembly to make
+a perfectly serviceable Sonic Screwdriver.&lt;/p&gt;</content><category term="Projects"/><category term="electronics"/></entry><entry><title>iPhone Mic</title><link href="https://www.mattleaverton.com/posts/2012/Jun/16/iphone-mic" rel="alternate"/><published>2012-06-16T13:37:00-05:00</published><updated>2012-06-16T13:37:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2012-06-16:/posts/2012/Jun/16/iphone-mic</id><summary type="html">&lt;p&gt;External mic for iPhone&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="iOS mic progress 1" class="image-process-inline" src="/images/derivatives/inline/ios-mic-3.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="iOS mic progress 2" class="image-process-inline" src="/images/derivatives/inline/ios-mic-2.jpg"/&gt;&lt;/p&gt;</content><category term="Projects"/><category term="electronics"/><category term="music"/></entry><entry><title>Laser Harp</title><link href="https://www.mattleaverton.com/posts/2012/Mar/19/laser-harp" rel="alternate"/><published>2012-03-19T14:56:00-05:00</published><updated>2012-05-03T14:56:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2012-03-19:/posts/2012/Mar/19/laser-harp</id><summary type="html">&lt;p&gt;ARM Embedded synth engine triggered by lasers&lt;/p&gt;</summary><content type="html">&lt;p&gt;Final project for &lt;a href="https://users.ece.utexas.edu/~valvano/EE445L/" target="_blank"&gt;EE445L Embedded Systems Design Lab&lt;/a&gt; by &lt;a href="https://users.ece.utexas.edu/~valvano/Volume1/E-Book/" target="_blank"&gt;Dr Valvano&lt;/a&gt;]&lt;/p&gt;
+&lt;iframe allowfullscreen="" frameborder="0" height="365" src="https://player.vimeo.com/video/65088565?h=f0404d0f42" title="vimeo-player" width="640"&gt;&lt;/iframe&gt;
+&lt;p&gt;Board layout, synth engine &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Laser Harp PCBA" class="image-process-inline" src="/images/derivatives/inline/laser-harp-pcba.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.linkedin.com/in/stafford-hutchins-a1863421/" target="_blank"&gt;Stafford Hutchins&lt;/a&gt; lab partner - UI state machine. &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Laser Harp Enclosure" class="image-process-inline" src="/images/derivatives/inline/laser-harp-enclosure.jpg"/&gt;&lt;/p&gt;</content><category term="Projects"/></entry><entry><title>MFOS Synthesizer</title><link href="https://www.mattleaverton.com/posts/2010/Dec/28/mfos-synthesizer" rel="alternate"/><published>2010-12-28T14:34:00-06:00</published><updated>2010-12-28T14:34:00-06:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2010-12-28:/posts/2010/Dec/28/mfos-synthesizer</id><summary type="html">&lt;p&gt;Homemade monosynth&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://musicfromouterspace.com/index.php?MAINTAB=SYNTHDIY&amp;amp;VPW=1275&amp;amp;VPH=920" target="_blank"&gt;Sound Lab Mini-Synth&lt;/a&gt; design by &lt;a href="http://musicfromouterspace.com/" target="_blank"&gt;Ray Wilson (Music From Outer Space)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;DIY transfer and etch boards&lt;/p&gt;
+&lt;p&gt;&lt;img alt="DIY synth progress 1" class="image-process-inline" src="/images/derivatives/inline/mfos-synth-2.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="DIY synth progress 2" class="image-process-inline" src="/images/derivatives/inline/mfos-synth-3.jpg"/&gt;&lt;/p&gt;</content><category term="Projects"/><category term="electronics"/><category term="music"/></entry><entry><title>Electric 1</title><link href="https://www.mattleaverton.com/posts/2010/May/24/electric-1" rel="alternate"/><published>2010-05-24T22:34:00-05:00</published><updated>2018-10-17T22:34:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2010-05-24:/posts/2010/May/24/electric-1</id><summary type="html">&lt;p&gt;First electric guitar build&lt;/p&gt;</summary><content type="html">&lt;p&gt;Telecaster with Stratocaster neck. Double binding. Sunburst finish.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Finished electric guitar in case" class="image-process-inline" src="/images/derivatives/inline/eg1-wide.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Inspired by Eric Clapton's Blind Faith Telecaster.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Clapton's Blind Faith Tele" class="image-process-inline" src="/images/derivatives/inline/eg1-clapton.jpg"/&gt;&lt;/p&gt;
+&lt;p&gt;Neck replacement Jun 27, 2012
+Refinish Jan 16, 2016&lt;/p&gt;
+&lt;p&gt;Last electronics rework between Mar 22, 2018 and Dec 26, 2018&lt;/p&gt;
+&lt;p&gt;Clapton blind faith - tele with a strat headstock&lt;/p&gt;
+&lt;p&gt;Build from scratch - neck, body, pickups&lt;/p&gt;
+&lt;p&gt;Pickup winder K'nex, drill press, potting in wax&lt;/p&gt;
+&lt;p&gt;"Wire it myself, I'm an EE!" :/ - Dec 12, 2008 images&lt;/p&gt;
+&lt;p&gt;Forgetting how to use all the available settings&lt;/p&gt;
+&lt;p&gt;Neck replacement surgery - broken bolts; neck wasn't ultimately that great&lt;/p&gt;
+&lt;p&gt;Off the shelf neck&lt;/p&gt;
+&lt;p&gt;New pickups, new wiring, simpler and simpler&lt;/p&gt;
+&lt;p&gt;Seymour Duncan pickups - images Aug 22, 2015&lt;/p&gt;</content><category term="Projects"/><category term="woodworking"/><category term="guitars"/></entry><entry><title>Acoustic 2</title><link href="https://www.mattleaverton.com/posts/2006/Apr/29/acoustic-2" rel="alternate"/><published>2006-04-29T22:28:00-05:00</published><updated>2006-04-29T22:28:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2006-04-29:/posts/2006/Apr/29/acoustic-2</id><summary type="html">&lt;p&gt;Second guitar build, scrapped into science competition&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://www.mattleaverton.com/posts/2005/Apr/29/acoustic-1"&gt;Encouraged by my success&lt;/a&gt; at creating a reasonable musical instrument, I set out to try again.
+In tandem with friends &lt;a href="https://www.facebook.com/PeikertFarms" target="_blank"&gt;Mr. Peikert&lt;/a&gt; and &lt;a href="https://www.planthropologypod.com/" target="_blank"&gt;Vikram&lt;/a&gt;,
+we ordered real wood and attempted to build guitars from scratch.&lt;/p&gt;
+&lt;p&gt;My effort was decent, and I almost made it through bending the sides (hairdryer and spray bottle) without breaking all 
+the wood. Ultimately, it was an unsuccessful journey - not enough planning or patience at this point most likely. The 
+scrap was able to become my repeat showing at the &lt;a href="https://scilympiad.com/tx" target="_blank"&gt;Science Olympiad&lt;/a&gt;
+&lt;strong&gt;Sound of Music&lt;/strong&gt; competition. &lt;/p&gt;
+&lt;p&gt;Less successful this time - the judges were unimpressed that I made a guitar two years in a row with no demonstrable 
+innovation in the process (even though this one looked and felt much more real). Ultimately that was the least important
+part, because I already had the bug.&lt;/p&gt;
+&lt;p&gt;Thanks again to my science and physics teacher &lt;a href="https://www.facebook.com/PeikertFarms" target="_blank"&gt;Mr. Peikert&lt;/a&gt; for 
+running the Science Olympiad team and always encouraging me to build and try wild things (and in this case, building wild
+things with me).&lt;/p&gt;</content><category term="Projects"/><category term="woodworking"/><category term="guitars"/></entry><entry><title>Acoustic 1</title><link href="https://www.mattleaverton.com/posts/2005/Apr/29/acoustic-1" rel="alternate"/><published>2005-04-29T22:28:00-05:00</published><updated>2005-04-29T22:28:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2005-04-29:/posts/2005/Apr/29/acoustic-1</id><summary type="html">&lt;p&gt;First guitar build for science competition&lt;/p&gt;</summary><content type="html">&lt;p&gt;Created for the 2005 &lt;a href="https://scilympiad.com/tx" target="_blank"&gt;Science Olympiad&lt;/a&gt; newly created &lt;strong&gt;Sound of Music&lt;/strong&gt; 
+category. The rules of the pair event were to create two musical instruments from scratch using minimal pre-fabricated
+parts, then play a duet.&lt;/p&gt;
+&lt;p&gt;Modeled the guitar after my &lt;a href="https://reverb.com/p/martin-000cxe-black-2002-2013" target="_blank"&gt;Martin 000CXE&lt;/a&gt;. Dremeled
+out the pieces to create the top, back, and sides. Eye bolts for tuners, nails for frets, golf tees to hold the strings.
+Real guitar strings were the only manufactured allowance. My partner built a violin with similar constraints.&lt;/p&gt;
+&lt;p&gt;Our competition piece was &lt;em&gt;Simple Gifts&lt;/em&gt; with which we won 1st place at the state competition.&lt;/p&gt;
+&lt;p&gt;Thanks to my science and physics teacher &lt;a href="https://www.facebook.com/PeikertFarms" target="_blank"&gt;Mr. Peikert&lt;/a&gt; for 
+running the Science Olympiad team and always encouraging me to build and try wild things.&lt;/p&gt;</content><category term="Projects"/><category term="woodworking"/><category term="guitars"/></entry></feed>

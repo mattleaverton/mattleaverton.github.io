@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Matt Leaverton - Python EXE Debugging Trick</title>
+<meta charset="utf-8"/>
+<meta content="Pelican" name="generator"/>
+<link href="https://www.mattleaverton.com/feeds/all.atom.xml" rel="alternate" title="Matt Leaverton Full Atom Feed" type="application/atom+xml"/>
+<link href="https://www.mattleaverton.com/feeds/writing.atom.xml" rel="alternate" title="Matt Leaverton Categories Atom Feed" type="application/atom+xml"/>
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" rel="stylesheet"/>
+<link href="https://www.mattleaverton.com/theme/css/style.min.css?338c5f90" rel="stylesheet"/>
+<meta content="software" name="tags"/>
+<meta content="python" name="tags"/>
+</head>
+<body>
+<nav class="main-nav">
+<ul>
+<li><a href="https://www.mattleaverton.com/pages/about.html">About</a></li>
+<li><a href="https://www.mattleaverton.com/category/projects.html">Projects</a></li>
+<li><a href="https://www.mattleaverton.com/category/reading.html">Reading</a></li>
+<li class="active"><a href="https://www.mattleaverton.com/category/writing.html">Writing</a></li>
+</ul>
+</nav>
+<div class="container">
+<div class="profile">
+<div class="profile">
+<a href="https://www.mattleaverton.com/">
+<img id="avatar" src="http://cdn.libravatar.org/avatar/72c96378335a5f2d5dd7bfe2ac93ed6f"/>
+</a>
+<h1><a href="https://www.mattleaverton.com/">Matt Leaverton</a></h1>
+<p>Software and Electronics.</p>
+<p>Currently Staff Test Systems Software Engineer at <a href="https://www.velentium.com/" target="_blank">Velentium</a></p>
+<div id="social-information">
+Connect with me:
+<div id="socials">
+<a href="https://github.com/mattleaverton" target="_blank" title="mattleaverton on Github">
+<i class="fa fa-github"></i>
+</a>
+<a href="https://www.linkedin.com/in/mattleaverton" target="_blank" title="mattleaverton on LinkedIn">
+<i class="fa fa-linkedin"></i>
+</a>
+<a href="https://twitter.com/mattleaverton" target="_blank" title="mattleaverton on Twitter">
+<i class="fa fa-twitter"></i>
+</a>
+<a href="https://www.mattleaverton.com/feeds/all.atom.xml" title="Atom feed">
+<i class="fa fa-rss"></i>
+</a>
+</div> </div>
+</div> </div>
+<div>
+<div id="page-content">
+<section class="body" id="content">
+<header>
+<h1 class="entry-title">
+<a href="https://www.mattleaverton.com/posts/2022/Oct/19/python-exe-debugging-trick" rel="bookmark" title="Permalink to Python EXE Debugging Trick">Python EXE Debugging Trick</a></h1>
+</header>
+<div class="post-info">
+<ul>
+<li><time class="published" datetime="2022-10-19T21:35:00-05:00">
+      19 October 2022
+    </time></li>
+</ul>
+<div class="tags">
+        Tags:
+            <a href="https://www.mattleaverton.com/tag/software.html">software</a>
+<a href="https://www.mattleaverton.com/tag/python.html">python</a>
+</div>
+<a href="https://github.com/mattleaverton/py-exe-debugging" target="_blank">GitHub Link</a>
+</div><!-- /.post-info -->
+<div class="entry-content">
+<p>There comes a time in every Python developer's life when they are ready for the next level: freezing scripts into
+an EXE for deployment. Much ink and blood has been shed on the topic and I have nothing to contribute directly to that
+today other than <a href="https://pyinstaller.org/en/stable/" target="_blank">PyInstaller</a> is a very reasonable tool for the
+job.</p>
+<p>If you are still reading after that earth-shattering news, you are in for a treat. Not long after the aforementioned time comes,
+another time comes along - the EXE does not work, and you are stumped.</p>
+<p>Thanks to Jason R. Coombs and Steven Kryskalla in <a href="https://stackoverflow.com/a/1396386" target="_blank">this StackOverflow answer</a> from
+2009, here is an excellent software nugget that can ease debugging particularly sticky PyInstaller issues.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">code</span>
+<span class="n">code</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">local</span><span class="o">=</span><span class="nb">locals</span><span class="p">())</span>
+</code></pre></div>
+<p>With no external libraries or fancy code, this drops you directly into the Python REPL (Read Evaluate Print Loop).
+This should feel familiar as it is rather like the standard Python command line interface, which makes for a powerful 
+debugging tool for a frozen environment. </p>
+<p>A couple notes: </p>
+<ul>
+<li><strong>First</strong>, nothing is imported by default, so import everything you want
+to use. </li>
+<li><strong>Second</strong>, when frozen, only the bundled libraries are available for access so not Python library installed locally
+on your system will be available. The Python standard library is bundled in with PyInstaller - run <code>sys.builtin_module_names</code>
+(after importing sys) to see what is available. </li>
+<li><strong>Third</strong>, especially if using PyInstaller in <code>--onefile</code> mode, paths 
+get complicated, so take care to understand where you are and where things are relative to you if that is 
+important to your debugging. </li>
+<li><strong>Last</strong>, simply use <code>sys.exit()</code> to exit when finished - make sure to import sys first.</li>
+</ul>
+<hr/>
+<p>To see how this can assist in debugging, consider the following scenario: you are developing a script to help a bakery 
+advertise their delicious foods. This script was not developed with deployment in mind, but you have people 
+showing interest, and you wish to share an EXE. The script works just fine when run it on your machine in test mode: </p>
+<div class="highlight"><pre><span></span><code>Welcome to Buntastic Bakery - please enjoy your 'Placeholder Croissant'
+</code></pre></div>
+<p>So you say, great, bundle it into an EXE and ship it to your dozens of friends who enjoy fine baked goods. </p>
+<p>Soon, reports are rolling in that instead of information about fine baked confections, your friends are getting the 
+unappetizing test message:</p>
+<div class="highlight"><pre><span></span><code>Welcome to Buntastic Bakery - please enjoy your 'Crusty Test Croissant'
+</code></pre></div>
+<p>Apparently you neglected to run the EXE before shipping, because you see the same message on your machine when
+you test. Time to debug. With test mode enabled, the message should come from <code>place_holder_baked_good</code> so that 
+<a href="https://github.com/mattleaverton/py-exe-debugging/blob/main/data/data_manager.py#L13" target="_blank">seems like a good place to start looking</a>. </p>
+<p>Adding the code snippet from above to the code yields the following:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">placeholder_baked_good</span><span class="p">(</span><span class="n">confection</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">""" Test mode - find and return a test baked good """</span>
+
+    <span class="kn">import</span> <span class="nn">code</span>
+    <span class="n">code</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">local</span><span class="o">=</span><span class="nb">locals</span><span class="p">())</span>
+
+    <span class="n">baked_good</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">'library.test_data'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">baked_good</span><span class="o">.</span><span class="n">TEST_STRING</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">confection</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> Play along at home with this code by getting your own copy <a href="https://github.com/mattleaverton/py-exe-debugging" target="_blank">from Github</a> </p>
+</blockquote>
+<p>Build into an EXE and run it again to find yourself in the interactive Python console</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span> <span class="n">pyinstaller</span> <span class="n">main</span><span class="o">.</span><span class="n">spec</span>
+<span class="o">&gt;</span> <span class="o">.</span>\<span class="n">dist</span>\<span class="n">main</span><span class="o">.</span><span class="n">exe</span>
+<span class="n">Python</span> <span class="mf">3.10.2</span> <span class="p">(</span><span class="n">tags</span><span class="o">/</span><span class="n">v3</span><span class="mf">.10.2</span><span class="p">:</span><span class="n">a58ebcc</span><span class="p">,</span> <span class="n">Jan</span> <span class="mi">17</span> <span class="mi">2022</span><span class="p">,</span> <span class="mi">14</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">15</span><span class="p">)</span> <span class="p">[</span><span class="n">MSC</span> <span class="n">v</span><span class="mf">.1929</span> <span class="mi">64</span> <span class="n">bit</span> <span class="p">(</span><span class="n">AMD64</span><span class="p">)]</span> <span class="n">on</span> <span class="n">win32</span>
+<span class="n">Type</span> <span class="s2">"help"</span><span class="p">,</span> <span class="s2">"copyright"</span><span class="p">,</span> <span class="s2">"credits"</span> <span class="ow">or</span> <span class="s2">"license"</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="p">(</span><span class="n">InteractiveConsole</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>
+<p>The invalid output message indicates that the code inside the <code>ModuleNotFoundError</code> exception is run, so test out
+the import manually to see if that is in fact the issue.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">library.test_data</span> <span class="k">as</span> <span class="nn">baked_good</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">"&lt;console&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">ModuleNotFoundError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">'library'</span>
+</code></pre></div>
+<p>As suspected - Python reports that it cannot find our <code>library</code> module. It is clearly present in the repo and this code
+works when run in script format, so something must be missing when translating into the EXE. One last check to confirm - 
+<code>sys.modules</code> shows all modules that the Python import system and PyInstaller module loaders have found and processed
+(as noted before, if you're looking for built-in libraries, use <code>sys.builtin_module_names</code>). If the package you
+want to import is not shown in <code>sys.modules</code> then Python has not seen the library we are looking for yet.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pprint</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="s1">'copyreg'</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">'copyreg'</span> <span class="kn">from</span> <span class="s1">'C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">MATTLE~1</span><span class="se">\\</span><span class="s1">AppData</span><span class="se">\\</span><span class="s1">Local</span><span class="se">\\</span><span class="s1">Temp</span><span class="se">\\</span><span class="s1">_MEI175642</span><span class="se">\\</span><span class="s1">base_library.zip</span><span class="se">\\</span><span class="s1">copyr...</span>
+<span class="s1">'data'</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">'data'</span> <span class="kn">from</span> <span class="s1">'C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">MATTLE~1</span><span class="se">\\</span><span class="s1">AppData</span><span class="se">\\</span><span class="s1">Local</span><span class="se">\\</span><span class="s1">Temp</span><span class="se">\\</span><span class="s1">_MEI175642</span><span class="se">\\</span><span class="s1">data</span><span class="se">\\</span><span class="s1">__init__.pyc'</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="s1">'data.data_manager'</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">'data.data_manager'</span> <span class="kn">from</span> <span class="s1">'C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">MATTLE~1</span><span class="se">\\</span><span class="s1">AppData</span><span class="se">\\</span><span class="s1">Local</span><span class="se">\\</span><span class="s1">Temp</span><span class="se">\\</span><span class="s1">_MEI175642</span><span class="se">\\</span><span class="s1">dat...</span>
+<span class="s1">'dataclasses'</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">'dataclasses'</span> <span class="kn">from</span> <span class="s1">'C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">MATTLE~1</span><span class="se">\\</span><span class="s1">AppData</span><span class="se">\\</span><span class="s1">Local</span><span class="se">\\</span><span class="s1">Temp</span><span class="se">\\</span><span class="s1">_MEI175642</span><span class="se">\\</span><span class="s1">dataclasses.pyc...</span>
+<span class="o">...</span>
+<span class="s1">'io'</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">'io'</span> <span class="kn">from</span> <span class="s1">'C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">MATTLE~1</span><span class="se">\\</span><span class="s1">AppData</span><span class="se">\\</span><span class="s1">Local</span><span class="se">\\</span><span class="s1">Temp</span><span class="se">\\</span><span class="s1">_MEI175642</span><span class="se">\\</span><span class="s1">base_library.zip</span><span class="se">\\</span><span class="s1">io.pyc'</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="s1">'itertools'</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">'itertools'</span> <span class="p">(</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span><span class="p">)</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="s1">'keyword'</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">'keyword'</span> <span class="kn">from</span> <span class="s1">'C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">MATTLE~1</span><span class="se">\\</span><span class="s1">AppData</span><span class="se">\\</span><span class="s1">Local</span><span class="se">\\</span><span class="s1">Temp</span><span class="se">\\</span><span class="s1">_MEI175642</span><span class="se">\\</span><span class="s1">base_library.zip</span><span class="se">\\</span><span class="s1">keywo...</span>
+<span class="s1">'linecache'</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">'linecache'</span> <span class="kn">from</span> <span class="s1">'C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">MATTLE~1</span><span class="se">\\</span><span class="s1">AppData</span><span class="se">\\</span><span class="s1">Local</span><span class="se">\\</span><span class="s1">Temp</span><span class="se">\\</span><span class="s1">_MEI175642</span><span class="se">\\</span><span class="s1">base_library.zip</span><span class="se">\\</span><span class="s1">l...</span>
+<span class="s1">'marshal'</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">'marshal'</span> <span class="p">(</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span><span class="p">)</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="o">...</span>
+</code></pre></div>
+<p>First, you can see that the <code>data</code> and <code>data.data_manager</code> modules where the <code>placeholder_baked_good</code> and <code>get_baked_good</code> 
+methods are located are already processed - PyInstaller found those and brought them along. You can also see
+that <code>library</code> is completely missing.</p>
+<p>PyInstaller can perform a lot of magic in deciding what to bundle, but it is not perfect. This example case is 
+contrived to deliberately bamboozle PyInstaller with a dynamic import that it cannot see. It demonstrates
+that if your use case requires code trickery, care must be taken to give PyInstaller its best chance at success.</p>
+<p>In this case, the solution is simple - give PyInstaller a hand by adding <code>library.test_data</code> to the <code>hiddenimports</code> list 
+in <code>main.spec</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">Analysis</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">'main.py'</span><span class="p">],</span>
+    <span class="n">pathex</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">binaries</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">datas</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">hiddenimports</span><span class="o">=</span><span class="p">[</span><span class="s1">'library.test_data'</span><span class="p">],</span>
+    <span class="n">cipher</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">noarchive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">pyz</span> <span class="o">=</span> <span class="n">PYZ</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">pure</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">zipped_data</span><span class="p">,</span> <span class="n">cipher</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<p>Upon removal of the debug code and a rebuild, the EXE now works as expected.</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span> <span class="n">pyinstaller</span> <span class="n">main</span><span class="o">.</span><span class="n">spec</span>
+<span class="o">&gt;</span> <span class="o">.</span>\<span class="n">dist</span>\<span class="n">main</span><span class="o">.</span><span class="n">exe</span>
+<span class="n">Welcome</span> <span class="n">to</span> <span class="n">Buntastic</span> <span class="n">Bakery</span> <span class="o">-</span> <span class="n">please</span> <span class="n">enjoy</span> <span class="n">your</span> <span class="s1">'Placeholder Croissant'</span>
+</code></pre></div>
+<p>Astute readers may note - the simplest solution to the exact problem presented is to remove the
+dynamic import and place <code>from library import test_data as baked_good</code>, which will work and also hint to PyInstaller
+to bring along <code>library.test_data</code> with no extra help. Let this serve as both a recommendation to try to work with
+PyInstaller as often as possible, but also a way to get out of sticky situations if you need it. </p>
+<hr/>
+<p>A neat PyInstaller specific trick to see exactly what modules could be available for import, and not just those processed 
+already is to dig into the custom importers that PyInstaller creates to load code from the EXE archive it creates.
+Anyone can write extensions Python import system, details of which are for another day. The "path finders" - used
+to process an import statement and determine if there is anything available to load - can be viewed at <code>sys.meta_path</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">meta_path</span>
+<span class="p">[</span><span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">_frozen_importlib</span><span class="o">.</span><span class="n">BuiltinImporter</span><span class="s1">'&gt;, &lt;class '</span><span class="n">_frozen_importlib</span><span class="o">.</span><span class="n">FrozenImporter</span><span class="s1">'&gt;, </span>
+ <span class="o">&lt;</span><span class="n">pyimod02_importers</span><span class="o">.</span><span class="n">FrozenImporter</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x000002172DA54DF0</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">_frozen_importlib_external</span><span class="o">.</span><span class="n">PathFinder</span><span class="s1">'&gt;]</span>
+</code></pre></div>
+<p><code>pyimod02_importers.FrozenImporter</code> here is the PyInstaller path finder responsible for reporting whether an import
+statement can load any module from its bundle. On load, this finder <a href="https://github.com/pyinstaller/pyinstaller/blob/develop/PyInstaller/loader/pyimod02_importers.py#L117" target="_blank">builds a table of contents</a> containing all available 
+libraries, and we can take a peek:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pprint</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">meta_path</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">toc</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="s1">'importlib.util'</span><span class="p">,</span>
+<span class="s1">'inspect'</span><span class="p">,</span>
+<span class="s1">'library'</span><span class="p">,</span>
+<span class="s1">'library.test_data'</span><span class="p">,</span>
+<span class="s1">'logging'</span><span class="p">,</span>
+<span class="s1">'lzma'</span><span class="p">,</span>
+<span class="s1">'mimetypes'</span><span class="p">,</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">library.test_data</span> <span class="k">as</span> <span class="nn">baked_good</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">baked_good</span><span class="o">.</span><span class="n">TEST_STRING</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">"Muffin"</span><span class="p">))</span>
+<span class="n">Placeholder</span> <span class="n">Muffin</span>
+</code></pre></div>
+<p>After fixing our dynamic import issue, <code>library.test_data</code> is now available and can be successfully imported and used.</p>
+<hr/>
+<p>PyInstaller provides <a href="https://pyinstaller.org/en/stable/when-things-go-wrong.html" target="_blank">several official solutions</a> 
+to problematic scenarios. In case those do not fit your needs, let this trick be another
+tool in your belt for debugging deployments. </p>
+</div><!-- /.entry-content -->
+</section>
+</div>
+<footer class="body" id="footer">
+<address class="vcard body" id="about">
+<a href="https://github.com/mattleaverton/website-tools" target="_blank">Open Source.</a> Powered by <a href="https://getpelican.com/" target="_blank">Pelican</a> and <a href="https://www.python.org/" target="_blank">Python</a>.
+                </address><!-- /#about -->
+</footer><!-- /#contentinfo -->
+</div>
+</div>
+</body>
+</html>

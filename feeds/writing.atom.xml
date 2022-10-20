@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Matt Leaverton - Writing</title><link href="https://www.mattleaverton.com/" rel="alternate"/><link href="https://www.mattleaverton.com/feeds/writing.atom.xml" rel="self"/><id>https://www.mattleaverton.com/</id><updated>2022-10-19T21:35:00-05:00</updated><entry><title>Python EXE Debugging Trick</title><link href="https://www.mattleaverton.com/posts/2022/Oct/19/python-exe-debugging-trick" rel="alternate"/><published>2022-10-19T21:35:00-05:00</published><updated>2022-10-19T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2022-10-19:/posts/2022/Oct/19/python-exe-debugging-trick</id><summary type="html"/><content type="html">&lt;p&gt;There comes a time in every Python developer's life when they are ready for the next level: freezing scripts into
+an EXE for deployment. Much ink and blood has been shed on the topic and I have nothing to contribute directly to that
+today other than &lt;a href="https://pyinstaller.org/en/stable/" target="_blank"&gt;PyInstaller&lt;/a&gt; is a very reasonable tool for the
+job.&lt;/p&gt;
+&lt;p&gt;If you are still reading after that earth-shattering news, you are in for a treat. Not long after the aforementioned time comes,
+another time comes along - the EXE does not work, and you are stumped.&lt;/p&gt;
+&lt;p&gt;Thanks to Jason R. Coombs and Steven Kryskalla in &lt;a href="https://stackoverflow.com/a/1396386" target="_blank"&gt;this StackOverflow answer&lt;/a&gt; from
+2009, here is an excellent software nugget that can ease debugging particularly sticky PyInstaller issues.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;code&lt;/span&gt;
+&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interact&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;locals&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With no external libraries or fancy code, this drops you directly into the Python REPL (Read Evaluate Print Loop).
+This should feel familiar as it is rather like the standard Python command line interface, which makes for a powerful 
+debugging tool for a frozen environment. &lt;/p&gt;
+&lt;p&gt;A couple notes: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;First&lt;/strong&gt;, nothing is imported by default, so import everything you want
+to use. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Second&lt;/strong&gt;, when frozen, only the bundled libraries are available for access so not Python library installed locally
+on your system will be available. The Python standard library is bundled in with PyInstaller - run &lt;code&gt;sys.builtin_module_names&lt;/code&gt;
+(after importing sys) to see what is available. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Third&lt;/strong&gt;, especially if using PyInstaller in &lt;code&gt;--onefile&lt;/code&gt; mode, paths 
+get complicated, so take care to understand where you are and where things are relative to you if that is 
+important to your debugging. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Last&lt;/strong&gt;, simply use &lt;code&gt;sys.exit()&lt;/code&gt; to exit when finished - make sure to import sys first.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr/&gt;
+&lt;p&gt;To see how this can assist in debugging, consider the following scenario: you are developing a script to help a bakery 
+advertise their delicious foods. This script was not developed with deployment in mind, but you have people 
+showing interest, and you wish to share an EXE. The script works just fine when run it on your machine in test mode: &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Welcome to Buntastic Bakery - please enjoy your 'Placeholder Croissant'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So you say, great, bundle it into an EXE and ship it to your dozens of friends who enjoy fine baked goods. &lt;/p&gt;
+&lt;p&gt;Soon, reports are rolling in that instead of information about fine baked confections, your friends are getting the 
+unappetizing test message:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Welcome to Buntastic Bakery - please enjoy your 'Crusty Test Croissant'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Apparently you neglected to run the EXE before shipping, because you see the same message on your machine when
+you test. Time to debug. With test mode enabled, the message should come from &lt;code&gt;place_holder_baked_good&lt;/code&gt; so that 
+&lt;a href="https://github.com/mattleaverton/py-exe-debugging/blob/main/data/data_manager.py#L13" target="_blank"&gt;seems like a good place to start looking&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;Adding the code snippet from above to the code yields the following:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;placeholder_baked_good&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;confection&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="sd"&gt;""" Test mode - find and return a test baked good """&lt;/span&gt;
+
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;code&lt;/span&gt;
+    &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interact&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;locals&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+
+    &lt;span class="n"&gt;baked_good&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;importlib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;import_module&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'library.test_data'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;baked_good&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TEST_STRING&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;confection&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Play along at home with this code by getting your own copy &lt;a href="https://github.com/mattleaverton/py-exe-debugging" target="_blank"&gt;from Github&lt;/a&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Build into an EXE and run it again to find yourself in the interactive Python console&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;pyinstaller&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;spec&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;\&lt;span class="n"&gt;dist&lt;/span&gt;\&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;
+&lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="mf"&gt;3.10.2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;v3&lt;/span&gt;&lt;span class="mf"&gt;.10.2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;a58ebcc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Jan&lt;/span&gt; &lt;span class="mi"&gt;17&lt;/span&gt; &lt;span class="mi"&gt;2022&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;MSC&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="mf"&gt;.1929&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt; &lt;span class="n"&gt;bit&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AMD64&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;win32&lt;/span&gt;
+&lt;span class="n"&gt;Type&lt;/span&gt; &lt;span class="s2"&gt;"help"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"copyright"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"credits"&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="s2"&gt;"license"&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;InteractiveConsole&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The invalid output message indicates that the code inside the &lt;code&gt;ModuleNotFoundError&lt;/code&gt; exception is run, so test out
+the import manually to see if that is in fact the issue.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;library.test_data&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;baked_good&lt;/span&gt;
+&lt;span class="n"&gt;Traceback&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;most&lt;/span&gt; &lt;span class="n"&gt;recent&lt;/span&gt; &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s2"&gt;"&lt;console&gt;"&lt;/console&gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="ne"&gt;ModuleNotFoundError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;No&lt;/span&gt; &lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;named&lt;/span&gt; &lt;span class="s1"&gt;'library'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As suspected - Python reports that it cannot find our &lt;code&gt;library&lt;/code&gt; module. It is clearly present in the repo and this code
+works when run in script format, so something must be missing when translating into the EXE. One last check to confirm - 
+&lt;code&gt;sys.modules&lt;/code&gt; shows all modules that the Python import system and PyInstaller module loaders have found and processed
+(as noted before, if you're looking for built-in libraries, use &lt;code&gt;sys.builtin_module_names&lt;/code&gt;). If the package you
+want to import is not shown in &lt;code&gt;sys.modules&lt;/code&gt; then Python has not seen the library we are looking for yet.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pprint&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pprint&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;pprint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="s1"&gt;'copyreg'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="s1"&gt;'copyreg'&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;MATTLE~1&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;AppData&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Local&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Temp&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;_MEI175642&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;base_library.zip&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;copyr...&lt;/span&gt;
+&lt;span class="s1"&gt;'data'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="s1"&gt;'data'&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;MATTLE~1&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;AppData&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Local&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Temp&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;_MEI175642&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;data&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;__init__.pyc'&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;'data.data_manager'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="s1"&gt;'data.data_manager'&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;MATTLE~1&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;AppData&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Local&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Temp&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;_MEI175642&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;dat...&lt;/span&gt;
+&lt;span class="s1"&gt;'dataclasses'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="s1"&gt;'dataclasses'&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;MATTLE~1&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;AppData&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Local&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Temp&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;_MEI175642&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;dataclasses.pyc...&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="s1"&gt;'io'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="s1"&gt;'io'&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;MATTLE~1&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;AppData&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Local&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Temp&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;_MEI175642&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;base_library.zip&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;io.pyc'&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;'itertools'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="s1"&gt;'itertools'&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;built&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;'keyword'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="s1"&gt;'keyword'&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;MATTLE~1&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;AppData&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Local&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Temp&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;_MEI175642&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;base_library.zip&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;keywo...&lt;/span&gt;
+&lt;span class="s1"&gt;'linecache'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="s1"&gt;'linecache'&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="s1"&gt;'C:&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Users&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;MATTLE~1&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;AppData&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Local&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;Temp&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;_MEI175642&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;base_library.zip&lt;/span&gt;&lt;span class="se"&gt;\\&lt;/span&gt;&lt;span class="s1"&gt;l...&lt;/span&gt;
+&lt;span class="s1"&gt;'marshal'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="s1"&gt;'marshal'&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;built&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;First, you can see that the &lt;code&gt;data&lt;/code&gt; and &lt;code&gt;data.data_manager&lt;/code&gt; modules where the &lt;code&gt;placeholder_baked_good&lt;/code&gt; and &lt;code&gt;get_baked_good&lt;/code&gt; 
+methods are located are already processed - PyInstaller found those and brought them along. You can also see
+that &lt;code&gt;library&lt;/code&gt; is completely missing.&lt;/p&gt;
+&lt;p&gt;PyInstaller can perform a lot of magic in deciding what to bundle, but it is not perfect. This example case is 
+contrived to deliberately bamboozle PyInstaller with a dynamic import that it cannot see. It demonstrates
+that if your use case requires code trickery, care must be taken to give PyInstaller its best chance at success.&lt;/p&gt;
+&lt;p&gt;In this case, the solution is simple - give PyInstaller a hand by adding &lt;code&gt;library.test_data&lt;/code&gt; to the &lt;code&gt;hiddenimports&lt;/code&gt; list 
+in &lt;code&gt;main.spec&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Analysis&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'main.py'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="n"&gt;pathex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[],&lt;/span&gt;
+    &lt;span class="n"&gt;binaries&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[],&lt;/span&gt;
+    &lt;span class="n"&gt;datas&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[],&lt;/span&gt;
+    &lt;span class="n"&gt;hiddenimports&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'library.test_data'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="n"&gt;cipher&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;noarchive&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;pyz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PYZ&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pure&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zipped_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cipher&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Upon removal of the debug code and a rebuild, the EXE now works as expected.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;pyinstaller&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;spec&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;\&lt;span class="n"&gt;dist&lt;/span&gt;\&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt;
+&lt;span class="n"&gt;Welcome&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;Buntastic&lt;/span&gt; &lt;span class="n"&gt;Bakery&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;please&lt;/span&gt; &lt;span class="n"&gt;enjoy&lt;/span&gt; &lt;span class="n"&gt;your&lt;/span&gt; &lt;span class="s1"&gt;'Placeholder Croissant'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Astute readers may note - the simplest solution to the exact problem presented is to remove the
+dynamic import and place &lt;code&gt;from library import test_data as baked_good&lt;/code&gt;, which will work and also hint to PyInstaller
+to bring along &lt;code&gt;library.test_data&lt;/code&gt; with no extra help. Let this serve as both a recommendation to try to work with
+PyInstaller as often as possible, but also a way to get out of sticky situations if you need it. &lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;A neat PyInstaller specific trick to see exactly what modules could be available for import, and not just those processed 
+already is to dig into the custom importers that PyInstaller creates to load code from the EXE archive it creates.
+Anyone can write extensions Python import system, details of which are for another day. The "path finders" - used
+to process an import statement and determine if there is anything available to load - can be viewed at &lt;code&gt;sys.meta_path&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;meta_path&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="nc"&gt;_frozen_importlib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;BuiltinImporter&lt;/span&gt;&lt;span class="s1"&gt;'&amp;gt;, &lt;class '&lt;="" span=""&gt;&lt;span class="n"&gt;_frozen_importlib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FrozenImporter&lt;/span&gt;&lt;span class="s1"&gt;'&amp;gt;, &lt;/span&gt;
+ &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;pyimod02_importers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FrozenImporter&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0x000002172DA54DF0&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="nc"&gt;_frozen_importlib_external&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PathFinder&lt;/span&gt;&lt;span class="s1"&gt;'&amp;gt;]&lt;/span&gt;
+&lt;/class&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;pyimod02_importers.FrozenImporter&lt;/code&gt; here is the PyInstaller path finder responsible for reporting whether an import
+statement can load any module from its bundle. On load, this finder &lt;a href="https://github.com/pyinstaller/pyinstaller/blob/develop/PyInstaller/loader/pyimod02_importers.py#L117" target="_blank"&gt;builds a table of contents&lt;/a&gt; containing all available 
+libraries, and we can take a peek:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pprint&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pprint&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;pprint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;meta_path&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;toc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="s1"&gt;'importlib.util'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;'inspect'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;'library'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;'library.test_data'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;'logging'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;'lzma'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;'mimetypes'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;library.test_data&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;baked_good&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;baked_good&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TEST_STRING&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Muffin"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;Placeholder&lt;/span&gt; &lt;span class="n"&gt;Muffin&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After fixing our dynamic import issue, &lt;code&gt;library.test_data&lt;/code&gt; is now available and can be successfully imported and used.&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;PyInstaller provides &lt;a href="https://pyinstaller.org/en/stable/when-things-go-wrong.html" target="_blank"&gt;several official solutions&lt;/a&gt; 
+to problematic scenarios. In case those do not fit your needs, let this trick be another
+tool in your belt for debugging deployments. &lt;/p&gt;</content><category term="Writing"/><category term="software"/><category term="python"/></entry><entry><title>Increase Your Attack Surface</title><link href="https://www.mattleaverton.com/posts/2022/Sep/21/increase-your-attack-surface" rel="alternate"/><published>2022-09-21T10:44:00-05:00</published><updated>2022-09-21T10:44:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2022-09-21:/posts/2022/Sep/21/increase-your-attack-surface</id><summary type="html"/><content type="html">&lt;p&gt;My first blog was a WordPress site borne from a long forgotten University assignment. Undoubtedly it was meandering, 
+inane, and self-important - I am grateful that even the &lt;a href="https://archive.org/web" target="_blank"&gt;Internet Archive&lt;/a&gt; 
+has misplaced the details. &lt;/p&gt;
+&lt;p&gt;Thanks to Aaron Francis in his article &lt;a href="https://github.com/readme/guides/publishing-your-work" target="_blank"&gt;Publishing your work increases your luck&lt;/a&gt;,
+I have reconsidered my hang-up about not writing because I have nothing to say, and instead am inspired that I may have 
+things to share that could be of interest to someone. I am discovering joy in the process of sharing itself and I 
+hope others may find some joy in my work as well.&lt;/p&gt;
+&lt;p&gt;Let's play a quick game of thought association: One theme of the article is the "Luck Surface Area", which is reminiscent to me 
+of the Attack Surface concept in cybersecurity (as taught to me by my colleague &lt;a href="https://us.artechhouse.com/Medical-Device-Cybersecurity-for-Engineers-and-Manufacturers-P2128.aspx" target="_blank"&gt;Chris&lt;/a&gt;).
+Thinking of Chris reminded me of a quote from one of his training sessions:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Hacking is not a naturally occurring event - there is a malicious, intelligent force at work" - Chris Gates&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Similarly, writing is not a natural event, but one undertaken with deliberation and care. With intent to be malicious 
+rarely and intelligent occasionally, here I am to do as the handily-tweetable featured quote of the main
+article recommends: &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Whatever you’re excited about, be excited about it publicly." - Aaron Francis&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="Writing"/></entry><entry><title>First Published Work</title><link href="https://www.mattleaverton.com/posts/2022/Sep/12/first-published-work" rel="alternate"/><published>2022-09-12T21:35:00-05:00</published><updated>2022-09-12T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2022-09-12:/posts/2022/Sep/12/first-published-work</id><summary type="html"/><content type="html">&lt;p&gt;Med-Tech Innovation News published an article I wrote on the "Build vs Buy" debate from the perspective 
+of risk and design simplicity - first writing of mine out in public! &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.med-technews.com/medtech-insights/medtech-materials-and-assembly-insights/build-vs-buy-in-automated-test-stations/" target="_blank"&gt;Build vs Buy in automated test stations&lt;/a&gt; &lt;a href="https://web.archive.org/web/20220919021108/https://www.med-technews.com/medtech-insi[%E2%80%A6]nd-assembly-insights/build-vs-buy-in-automated-test-stations/" target="_blank"&gt;[Archive]&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This article was inspired by my all-too-prevalent desire
+to listen to my inner &lt;a href="https://www.youtube.com/watch?v=AEBld6I_AKs" target="_blank"&gt;code-monkey&lt;/a&gt; engineer when designing a project solution. 
+Inevitably I will need a reminder of this, so I hope future Matt will stop long enough to remember:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The most efficient, effective, and efficacious design element is "nothing"&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;and&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;...simplify, simplify, simplify&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="Writing"/></entry></feed>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Matt Leaverton - OpenCV Explorer</title>
+<meta charset="utf-8"/>
+<meta content="Pelican" name="generator"/>
+<link href="https://www.mattleaverton.com/feeds/all.atom.xml" rel="alternate" title="Matt Leaverton Full Atom Feed" type="application/atom+xml"/>
+<link href="https://www.mattleaverton.com/feeds/projects.atom.xml" rel="alternate" title="Matt Leaverton Categories Atom Feed" type="application/atom+xml"/>
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" rel="stylesheet"/>
+<link href="https://www.mattleaverton.com/theme/css/style.min.css?338c5f90" rel="stylesheet"/>
+<meta content="software" name="tags"/>
+<meta content="opencv" name="tags"/>
+<meta content="python" name="tags"/>
+<meta content="Simplify prototyping in OpenCV" name="description"/>
+</head>
+<body>
+<nav class="main-nav">
+<ul>
+<li><a href="https://www.mattleaverton.com/pages/about.html">About</a></li>
+<li class="active"><a href="https://www.mattleaverton.com/category/projects.html">Projects</a></li>
+<li><a href="https://www.mattleaverton.com/category/reading.html">Reading</a></li>
+<li><a href="https://www.mattleaverton.com/category/writing.html">Writing</a></li>
+</ul>
+</nav>
+<div class="container">
+<div class="profile">
+<div class="profile">
+<a href="https://www.mattleaverton.com/">
+<img id="avatar" src="http://cdn.libravatar.org/avatar/72c96378335a5f2d5dd7bfe2ac93ed6f"/>
+</a>
+<h1><a href="https://www.mattleaverton.com/">Matt Leaverton</a></h1>
+<p>Software and Electronics.</p>
+<p>Currently Staff Test Systems Software Engineer at <a href="https://www.velentium.com/" target="_blank">Velentium</a></p>
+<div id="social-information">
+Connect with me:
+<div id="socials">
+<a href="https://github.com/mattleaverton" target="_blank" title="mattleaverton on Github">
+<i class="fa fa-github"></i>
+</a>
+<a href="https://www.linkedin.com/in/mattleaverton" target="_blank" title="mattleaverton on LinkedIn">
+<i class="fa fa-linkedin"></i>
+</a>
+<a href="https://twitter.com/mattleaverton" target="_blank" title="mattleaverton on Twitter">
+<i class="fa fa-twitter"></i>
+</a>
+<a href="https://www.mattleaverton.com/feeds/all.atom.xml" title="Atom feed">
+<i class="fa fa-rss"></i>
+</a>
+</div> </div>
+</div> </div>
+<div>
+<div id="page-content">
+<section class="body" id="content">
+<header>
+<h1 class="entry-title">
+<a href="https://www.mattleaverton.com/posts/2021/Nov/11/opencv-explorer" rel="bookmark" title="Permalink to OpenCV Explorer">OpenCV Explorer</a></h1>
+</header>
+<div class="post-info">
+<ul>
+<li><time class="published" datetime="2021-11-11T22:18:00-06:00">
+      11 November 2021
+    </time></li>
+<li>Last Updated:
+    <time class="modified" datetime="2022-09-05T22:18:00-05:00">
+      05 September 2022
+    </time></li>
+<li>Project Phase:
+    <span class="phase">
+<b>Design</b>
+</span></li>
+</ul>
+<div class="tags">
+        Tags:
+            <a href="https://www.mattleaverton.com/tag/software.html">software</a>
+<a href="https://www.mattleaverton.com/tag/opencv.html">opencv</a>
+<a href="https://www.mattleaverton.com/tag/python.html">python</a>
+</div>
+<div class="image-process-article-image-div">
+<img class="image-process-article-image" src="/images/derivatives/article-image/cv-explorer-demo.jpg" width="100%">
+</img></div>
+<a href="https://github.com/mattleaverton/opencv-explorer" target="_blank">GitHub Link</a>
+</div><!-- /.post-info -->
+<div class="entry-content">
+<p>There is little more overwhelming than the blank page of a new image processing project. Looking
+at the white canvas of OpenCV can be tricky, even with a plan in mind. This will be a tool
+to ease initializing a project and aid in exploring and tweaking image processing solutions
+in a slick, persistent GUI setting.</p>
+<h3>View:</h3>
+<ul>
+<li>Live view </li>
+<li>Toggle to raw view (unprocessed); side-by-side?</li>
+<li>Intermediate image views assignable (pack the images in and organize together)</li>
+<li>Pan, Zoom available and controllable with mouse, keyboard, finger</li>
+</ul>
+<h3>Editor:</h3>
+<ul>
+<li>All opencv methods available</li>
+<li>Useful or regular usage items assigned shortcut names</li>
+<li>Certain useful functions aliased for quick use (resize, to black and white, save to file)</li>
+<li>Can use unix -x or list args in order</li>
+<li>Can take video or image sources as input</li>
+<li>Syntax errors are noted on a line and ignored (rest of script unaffected)</li>
+<li>Variable assignment (save this output for use later by name)<ul>
+<li>Indexable for multi-output methods?</li>
+<li>Raw image is auto assigned a variable like %RAW% or similar</li>
+</ul>
+</li>
+<li>Show line numbers</li>
+<li>Swap lines, duplicate lines, delete, cut/paste whole lines from keyboard shortcuts</li>
+</ul>
+<h3>Help / Learn:</h3>
+<ul>
+<li>Searchable knowledge base of methods and syntax</li>
+<li>Show info about active command in the editor</li>
+<li>Browseable compendium of all opencv commands with description, args, and shortcuts (if applicable)</li>
+</ul>
+<h3>Factory / Filter / Modifier:</h3>
+<ul>
+<li>Group all objects together in a folder</li>
+<li>File per modifier (opencv command)</li>
+<li>Object handles syntax, argument distribution, inputs/outputs</li>
+<li>Object handles code generation</li>
+<li>Need a destruct for when it is removed (e.g. stop video capture)</li>
+</ul>
+<h3>Export</h3>
+<ul>
+<li>Code generation on demand (Python)</li>
+</ul>
+</div><!-- /.entry-content -->
+</section>
+</div>
+<footer class="body" id="footer">
+<address class="vcard body" id="about">
+<a href="https://github.com/mattleaverton/website-tools" target="_blank">Open Source.</a> Powered by <a href="https://getpelican.com/" target="_blank">Pelican</a> and <a href="https://www.python.org/" target="_blank">Python</a>.
+                </address><!-- /#about -->
+</footer><!-- /#contentinfo -->
+</div>
+</div>
+</body>
+</html>
