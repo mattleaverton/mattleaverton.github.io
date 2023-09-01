@@ -74,7 +74,7 @@ Connect with me:
 <li>cd into repo directory</li>
 </ul>
 <div class="highlight"><pre><span></span><code>git lfs install
-git lfs track "*.png" "*.PNG" "*.pdf" "*.PDF" "*.jpg" "*.JPG" "*.jpeg" "*.JPEG" "*.bmp" "*.BMP" "*.zip" "*.ZIP" "*.db" "*.DB"
+git lfs track "*.png" "*.PNG" "*.jpg" "*.JPG" "*.jpeg" "*.JPEG" "*.zip" "*.ZIP" "*.db" "*.DB"
 git add .gitattributes
 git commit -m "Add LFS support to repo"
 git push
@@ -83,6 +83,7 @@ git lfs pull
 </code></pre></div>
 <ul>
 <li>repeat above for each existing branch</li>
+<li>manually update <code>.gitattributes</code> in future to add more file filters as necessary</li>
 </ul>
 <p>Thanks to my friend <a href="https://www.ipdb.org/search.cgi" target="_blank">CW</a> for the instructions.</p>
 </div><!-- /.entry-content -->
