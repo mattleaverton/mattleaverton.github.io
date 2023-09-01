@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Matt Leaverton - Reading</title><link href="https://www.mattleaverton.com/" rel="alternate"/><link href="https://www.mattleaverton.com/feeds/reading.atom.xml" rel="self"/><id>https://www.mattleaverton.com/</id><updated>2023-07-07T16:11:00-05:00</updated><entry><title>Books 2023</title><link href="https://www.mattleaverton.com/posts/2023/Jan/01/books-2023" rel="alternate"/><published>2023-01-01T16:11:00-06:00</published><updated>2023-07-07T16:11:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-01-01:/posts/2023/Jan/01/books-2023</id><summary type="html"/><content type="html">&lt;table&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Matt Leaverton - Reading</title><link href="https://www.mattleaverton.com/" rel="alternate"/><link href="https://www.mattleaverton.com/feeds/reading.atom.xml" rel="self"/><id>https://www.mattleaverton.com/</id><updated>2023-08-31T16:11:00-05:00</updated><entry><title>Books 2023</title><link href="https://www.mattleaverton.com/posts/2023/Jan/01/books-2023" rel="alternate"/><published>2023-01-01T16:11:00-06:00</published><updated>2023-08-31T16:11:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-01-01:/posts/2023/Jan/01/books-2023</id><summary type="html"/><content type="html">&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;Book&lt;/th&gt;
@@ -281,7 +281,7 @@
 &lt;td&gt;Alex Michaelides&lt;/td&gt;
 &lt;td&gt;August&lt;/td&gt;
 &lt;td&gt;Hardcopy&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Book Club&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;The Long Way to a Small, Angry Planet&lt;/td&gt;
