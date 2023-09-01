@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Matt Leaverton - Writing</title><link href="https://www.mattleaverton.com/" rel="alternate"/><link href="https://www.mattleaverton.com/feeds/writing.atom.xml" rel="self"/><id>https://www.mattleaverton.com/</id><updated>2023-07-31T21:35:00-05:00</updated><entry><title>Initialize Git LFS</title><link href="https://www.mattleaverton.com/posts/2023/Jul/31/initialize-git-lfs" rel="alternate"/><published>2023-07-31T21:35:00-05:00</published><updated>2023-07-31T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-07-31:/posts/2023/Jul/31/initialize-git-lfs</id><summary type="html"/><content type="html">&lt;p&gt;So I can remember how to do this in the future.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Matt Leaverton - Writing</title><link href="https://www.mattleaverton.com/" rel="alternate"/><link href="https://www.mattleaverton.com/feeds/writing.atom.xml" rel="self"/><id>https://www.mattleaverton.com/</id><updated>2023-08-01T21:35:00-05:00</updated><entry><title>Docker Setup on Debian VPS</title><link href="https://www.mattleaverton.com/posts/2023/Aug/01/docker-setup-on-debian-vps" rel="alternate"/><published>2023-08-01T21:35:00-05:00</published><updated>2023-08-01T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-08-01:/posts/2023/Aug/01/docker-setup-on-debian-vps</id><summary type="html"/><content type="html">&lt;p&gt;I have a cheap VPS from &lt;a href="https://www.vultr.com/" target="_blank"&gt;Vultr&lt;/a&gt; that I &lt;a href="https://www.mattleaverton.com/posts/2023/Jul/30/vps-with-vultr" target="_blank"&gt;have started using&lt;/a&gt;
+that I plan to use to run simple Dockerized web apps for personal use that I am experimenting with. Step 1 is to get Docker!&lt;/p&gt;
+&lt;p&gt;To install and set up Docker on Debian 12:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release &amp;amp;&amp;amp; echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &amp;gt; /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release &amp;amp;&amp;amp; echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &amp;gt; /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce&lt;/code&gt;&lt;/p&gt;</content><category term="Writing"/><category term="software"/><category term="infra"/></entry><entry><title>Initialize Git LFS</title><link href="https://www.mattleaverton.com/posts/2023/Jul/31/initialize-git-lfs" rel="alternate"/><published>2023-07-31T21:35:00-05:00</published><updated>2023-07-31T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-07-31:/posts/2023/Jul/31/initialize-git-lfs</id><summary type="html"/><content type="html">&lt;p&gt;So I can remember how to do this in the future.&lt;/p&gt;
 &lt;p&gt;Enable Git LFS on a repo:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;clone empty repo, master branch&lt;/li&gt;
@@ -16,13 +40,46 @@ git lfs pull
 &lt;ul&gt;
 &lt;li&gt;repeat above for each existing branch&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Thanks to my friend &lt;a href="https://www.ipdb.org/search.cgi" target="_blank"&gt;CW&lt;/a&gt; for the instructions.&lt;/p&gt;</content><category term="Writing"/><category term="software"/><category term="til"/></entry><entry><title>Enable IPv6 on Asuswrt-Merlin Router</title><link href="https://www.mattleaverton.com/posts/2023/Jul/30/enable-ipv6-on-asuswrt-merlin-router" rel="alternate"/><published>2023-07-30T21:35:00-05:00</published><updated>2023-07-30T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-07-30:/posts/2023/Jul/30/enable-ipv6-on-asuswrt-merlin-router</id><summary type="html"/><content type="html">&lt;p&gt;Recently I started using &lt;a href="https://www.vultr.com/" target="_blank"&gt;Vultr&lt;/a&gt; for VPS hosting (&lt;a href="https://www.mattleaverton.com/drafts/vps-with-vultr.html" target="_blank"&gt;details here&lt;/a&gt;)
+&lt;p&gt;Thanks to my friend &lt;a href="https://www.ipdb.org/search.cgi" target="_blank"&gt;CW&lt;/a&gt; for the instructions.&lt;/p&gt;</content><category term="Writing"/><category term="software"/><category term="til"/></entry><entry><title>Enable IPv6 on Asuswrt-Merlin Router</title><link href="https://www.mattleaverton.com/posts/2023/Jul/30/enable-ipv6-on-asuswrt-merlin-router" rel="alternate"/><published>2023-07-30T21:35:00-05:00</published><updated>2023-07-30T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-07-30:/posts/2023/Jul/30/enable-ipv6-on-asuswrt-merlin-router</id><summary type="html"/><content type="html">&lt;p&gt;Recently I started using &lt;a href="https://www.vultr.com/" target="_blank"&gt;Vultr&lt;/a&gt; for VPS hosting (&lt;a href="https://www.mattleaverton.com/posts/2023/Jul/30/vps-with-vultr" target="_blank"&gt;details here&lt;/a&gt;)
 and the cheapest instance is IPv6 only. This suits my purposes just fine, except that I was unable to SSH into the 
 server from my home network. I could not even ping it successfully.&lt;/p&gt;
 &lt;p&gt;From research, I learned that many routers have IPv6 disabled by default, including my Asus router running Asuswrt-Merlin.
 &lt;a href="https://www.asus.com/support/FAQ/113990/" target="_blank"&gt;This help article from Asus&lt;/a&gt; did the trick. After updating my
 &lt;code&gt;Connection Type&lt;/code&gt; from the &lt;code&gt;Advanced Settings -&amp;gt; IPv6&lt;/code&gt; menu from &lt;code&gt;Disable&lt;/code&gt; to &lt;code&gt;Native&lt;/code&gt;, I was good to go. My local computer
-now had an IPv6 address and I could ping and SSH an IPv6 address to my heart's content&lt;/p&gt;</content><category term="Writing"/><category term="software"/></entry><entry><title>Glowforge Aura Launch</title><link href="https://www.mattleaverton.com/posts/2023/Jul/25/glowforge-aura-launch" rel="alternate"/><published>2023-07-25T21:35:00-05:00</published><updated>2023-07-25T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-07-25:/posts/2023/Jul/25/glowforge-aura-launch</id><summary type="html"/><content type="html">&lt;p&gt;Today the &lt;a href="https://glowforge.com/aura/main" target="_blank"&gt;Glowforge Aura&lt;/a&gt; is released to the world! This is the first 
+now had an IPv6 address and I could ping and SSH an IPv6 address to my heart's content&lt;/p&gt;</content><category term="Writing"/><category term="software"/></entry><entry><title>VPS with Vultr</title><link href="https://www.mattleaverton.com/posts/2023/Jul/30/vps-with-vultr" rel="alternate"/><published>2023-07-30T21:35:00-05:00</published><updated>2023-07-30T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-07-30:/posts/2023/Jul/30/vps-with-vultr</id><summary type="html"/><content type="html">&lt;p&gt;I have started using &lt;a href="https://www.vultr.com/" target="_blank"&gt;Vultr&lt;/a&gt; for a cheap VPS instance (again - I initially signed up
+back in June 2021, resulting in Vultr getting a year of billing out of me for free). I'm using the
+base level &lt;a href="https://www.vultr.com/pricing/#cloud-compute/" target="_blank"&gt;Cloud Compute&lt;/a&gt;, which is great for my purposes, 
+and again - is cheap. I am planning to experimenting with hosting several simple Dockerized web apps for personal use.&lt;/p&gt;
+&lt;p&gt;Setup process was very simple - a few clicks, selecting a distro (Debian), a server name, and billing setup. 
+There is a nifty web VNC client (using &lt;a href="https://novnc.com/info.html" target="_blank"&gt;noVNC&lt;/a&gt;) accessible from the Vultr server dashboard that makes initial connection and setup dead simple. I copied over my 
+SSH key and was off to the races (after I got &lt;a href="https://www.mattleaverton.com/posts/2023/Jul/30/enable-ipv6-on-asuswrt-merlin-router" target="_blank"&gt;IPv6 working on my local network&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;I added a new user so that I do not live in root all the time:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;adduser matt
+usermod -aG sudo matt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To set up Docker:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release &amp;amp;&amp;amp; echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &amp;gt; /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release &amp;amp;&amp;amp; echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &amp;gt; /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce&lt;/code&gt;&lt;/p&gt;</content><category term="Writing"/><category term="software"/><category term="infra"/></entry><entry><title>Glowforge Aura Launch</title><link href="https://www.mattleaverton.com/posts/2023/Jul/25/glowforge-aura-launch" rel="alternate"/><published>2023-07-25T21:35:00-05:00</published><updated>2023-07-25T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-07-25:/posts/2023/Jul/25/glowforge-aura-launch</id><summary type="html"/><content type="html">&lt;p&gt;Today the &lt;a href="https://glowforge.com/aura/main" target="_blank"&gt;Glowforge Aura&lt;/a&gt; is released to the world! This is the first 
 product I developed on and helped release in my time at &lt;a href="https://www.mattleaverton.com/posts/2023/Feb/15/career-update-glowforge" target="_blank"&gt;Glowforge&lt;/a&gt;.
 This product is the result of excellent work by the whole team. I am excited to see what people make!&lt;/p&gt;</content><category term="Writing"/><category term="work"/></entry><entry><title>GAL Conference 2023</title><link href="https://www.mattleaverton.com/posts/2023/Jul/10/gal-conference-2023" rel="alternate"/><published>2023-07-10T21:35:00-05:00</published><updated>2023-07-10T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-07-10:/posts/2023/Jul/10/gal-conference-2023</id><summary type="html"/><content type="html">&lt;p&gt;This past weekend I attended the
 &lt;a href="https://luth.org/conventions/2023-convention-recap/" target="_blank"&gt;Guild of American Luthiers Convention 2023&lt;/a&gt; in
@@ -41,7 +98,16 @@ Tacoma, WA and had a phenomenal time.&lt;/p&gt;
 &lt;li&gt;Beautiful weather and a place to stay with view of the water&lt;/li&gt;
 &lt;li&gt;Lots of sushi and curry&lt;/li&gt;
 &lt;/ul&gt;</content><category term="Writing"/><category term="luthier"/></entry><entry><title>Using DB Browser for SQlite</title><link href="https://www.mattleaverton.com/posts/2023/Jul/06/using-db-browser-for-sqlite" rel="alternate"/><published>2023-07-06T21:35:00-05:00</published><updated>2023-07-06T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-07-06:/posts/2023/Jul/06/using-db-browser-for-sqlite</id><summary type="html"/><content type="html">&lt;p&gt;The greatest tool for any work with Sqlite is &lt;a href="https://sqlitebrowser.org/" target="_blank"&gt;DB Browser for SQlite&lt;/a&gt;. An incredibly
-straightforward and useful GUI for viewing your tables, browsing data, and testing out queries. 10/10.&lt;/p&gt;</content><category term="Writing"/><category term="software"/><category term="sql"/></entry><entry><title>Career Update - Glowforge</title><link href="https://www.mattleaverton.com/posts/2023/Feb/15/career-update-glowforge" rel="alternate"/><published>2023-02-15T21:35:00-06:00</published><updated>2023-02-15T21:35:00-06:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-02-15:/posts/2023/Feb/15/career-update-glowforge</id><summary type="html"/><content type="html">&lt;p&gt;Thank you to &lt;a href="https://www.velentium.com" target="_blank"&gt;Velentium&lt;/a&gt; for a wonderful 9 years - we made some incredible things together.&lt;/p&gt;
+straightforward and useful GUI for viewing your tables, browsing data, and testing out queries. 10/10.&lt;/p&gt;</content><category term="Writing"/><category term="software"/><category term="sql"/></entry><entry><title>PyTexas 2023</title><link href="https://www.mattleaverton.com/posts/2023/Apr/02/pytexas-2023" rel="alternate"/><published>2023-04-02T21:35:00-05:00</published><updated>2023-04-02T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-04-02:/posts/2023/Apr/02/pytexas-2023</id><summary type="html"/><content type="html">&lt;p&gt;This weekend I attended &lt;a href="https://www.pytexas.org/" target="_blank"&gt;PyTexas&lt;/a&gt; 2023 in Austin.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Highlights&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Keynote by Brandon Rhodes - a great mix of software, psychology, and philosophy - especially engaging presentation and delivery - &lt;a href="https://www.youtube.com/watch?v=APVNZfeOCI4&amp;amp;t=1s" target="_blank"&gt;YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Al Sweigert - fun to see Al in person and get to meet him - &lt;a href="https://www.youtube.com/watch?v=tAKfA3Lfvi0" target="_blank"&gt;YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Joshua Cannon on build engineering - interesting topic, well put together slides, and entertaining delivery - &lt;a href="https://www.youtube.com/watch?v=OENthsW-bMs"&gt;YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Chris May on refactoring - his suggestion to comment out existing code instead of deleting when updating saves me on a regular basis - &lt;a href="https://www.youtube.com/watch?v=P1QFCx2aFBY" target="_blank"&gt;YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Everyone was talking about &lt;a href="https://beta.ruff.rs/docs/" target="_blank"&gt;Ruff&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spending time at the incredible &lt;a href="https://library.austintexas.gov/central-library" target="_blank"&gt;Austin Central Library&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Writing"/><category term="software"/><category term="python"/></entry><entry><title>Career Update - Glowforge</title><link href="https://www.mattleaverton.com/posts/2023/Feb/15/career-update-glowforge" rel="alternate"/><published>2023-02-15T21:35:00-06:00</published><updated>2023-02-15T21:35:00-06:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-02-15:/posts/2023/Feb/15/career-update-glowforge</id><summary type="html"/><content type="html">&lt;p&gt;Thank you to &lt;a href="https://www.velentium.com" target="_blank"&gt;Velentium&lt;/a&gt; for a wonderful 9 years - we made some incredible things together.&lt;/p&gt;
 &lt;p&gt;Excited to start working with &lt;a href="https://glowforge.com/" target="_blank"&gt;Glowforge&lt;/a&gt; as a Senior Software Engineer. 
 Check out my bio &lt;a href="https://glowforge.com/about-us" target="_blank"&gt;here&lt;/a&gt; (the Matt closest to the bottom currently).&lt;/p&gt;</content><category term="Writing"/></entry><entry><title>Python EXE Debugging Trick</title><link href="https://www.mattleaverton.com/posts/2022/Oct/19/python-exe-debugging-trick" rel="alternate"/><published>2022-10-19T21:35:00-05:00</published><updated>2022-10-19T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2022-10-19:/posts/2022/Oct/19/python-exe-debugging-trick</id><summary type="html"/><content type="html">&lt;p&gt;There comes a time in every Python developer's life when they are ready for the next level: freezing scripts into
 an EXE for deployment. Much ink and blood has been shed on the topic and I have nothing to contribute directly to that

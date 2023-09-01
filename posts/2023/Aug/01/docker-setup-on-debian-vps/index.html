@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-<title>Matt Leaverton - Enable IPv6 on Asuswrt-Merlin Router</title>
+<title>Matt Leaverton - Docker Setup on Debian VPS</title>
 <meta charset="utf-8"/>
 <meta content="Pelican" name="generator"/>
 <link href="https://www.mattleaverton.com/feeds/all.atom.xml" rel="alternate" title="Matt Leaverton Full Atom Feed" type="application/atom+xml"/>
@@ -10,6 +10,7 @@
 <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" rel="stylesheet"/>
 <link href="https://www.mattleaverton.com/theme/css/style.min.css?338c5f90" rel="stylesheet"/>
 <meta content="software" name="tags"/>
+<meta content="infra" name="tags"/>
 </head>
 <body>
 <nav class="main-nav">
@@ -51,27 +52,46 @@ Connect with me:
 <section class="body" id="content">
 <header>
 <h1 class="entry-title">
-<a href="https://www.mattleaverton.com/posts/2023/Jul/30/enable-ipv6-on-asuswrt-merlin-router" rel="bookmark" title="Permalink to Enable IPv6 on Asuswrt-Merlin Router">Enable IPv6 on Asuswrt-Merlin Router</a></h1>
+<a href="https://www.mattleaverton.com/posts/2023/Aug/01/docker-setup-on-debian-vps" rel="bookmark" title="Permalink to Docker Setup on Debian VPS">Docker Setup on Debian VPS</a></h1>
 </header>
 <div class="post-info">
 <ul>
-<li><time class="published" datetime="2023-07-30T21:35:00-05:00">
-      30 July 2023
+<li><time class="published" datetime="2023-08-01T21:35:00-05:00">
+      01 August 2023
     </time></li>
 </ul>
 <div class="tags">
         Tags:
             <a href="https://www.mattleaverton.com/tag/software.html">software</a>
+<a href="https://www.mattleaverton.com/tag/infra.html">infra</a>
 </div>
 </div><!-- /.post-info -->
 <div class="entry-content">
-<p>Recently I started using <a href="https://www.vultr.com/" target="_blank">Vultr</a> for VPS hosting (<a href="https://www.mattleaverton.com/posts/2023/Jul/30/vps-with-vultr" target="_blank">details here</a>)
-and the cheapest instance is IPv6 only. This suits my purposes just fine, except that I was unable to SSH into the 
-server from my home network. I could not even ping it successfully.</p>
-<p>From research, I learned that many routers have IPv6 disabled by default, including my Asus router running Asuswrt-Merlin.
-<a href="https://www.asus.com/support/FAQ/113990/" target="_blank">This help article from Asus</a> did the trick. After updating my
-<code>Connection Type</code> from the <code>Advanced Settings -&gt; IPv6</code> menu from <code>Disable</code> to <code>Native</code>, I was good to go. My local computer
-now had an IPv6 address and I could ping and SSH an IPv6 address to my heart's content</p>
+<p>I have a cheap VPS from <a href="https://www.vultr.com/" target="_blank">Vultr</a> that I <a href="https://www.mattleaverton.com/posts/2023/Jul/30/vps-with-vultr" target="_blank">have started using</a>
+that I plan to use to run simple Dockerized web apps for personal use that I am experimenting with. Step 1 is to get Docker!</p>
+<p>To install and set up Docker on Debian 12:</p>
+<p><code>sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce</code></p>
 </div><!-- /.entry-content -->
 </section>
 </div>
