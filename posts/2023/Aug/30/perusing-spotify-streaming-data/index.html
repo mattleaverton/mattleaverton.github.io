@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Matt Leaverton - Perusing Spotify Streaming Data</title>
+<meta charset="utf-8"/>
+<meta content="Pelican" name="generator"/>
+<link href="https://www.mattleaverton.com/feeds/all.atom.xml" rel="alternate" title="Matt Leaverton Full Atom Feed" type="application/atom+xml"/>
+<link href="https://www.mattleaverton.com/feeds/writing.atom.xml" rel="alternate" title="Matt Leaverton Categories Atom Feed" type="application/atom+xml"/>
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" rel="stylesheet"/>
+<link href="https://www.mattleaverton.com/theme/css/style.min.css?338c5f90" rel="stylesheet"/>
+<meta content="software" name="tags"/>
+<meta content="sql" name="tags"/>
+</head>
+<body>
+<nav class="main-nav">
+<ul>
+<li><a href="https://www.mattleaverton.com/pages/about.html">About</a></li>
+<li><a href="https://www.mattleaverton.com/category/projects.html">Projects</a></li>
+<li><a href="https://www.mattleaverton.com/category/reading.html">Reading</a></li>
+<li class="active"><a href="https://www.mattleaverton.com/category/writing.html">Writing</a></li>
+</ul>
+</nav>
+<div class="container">
+<div class="profile">
+<div class="profile">
+<a href="https://www.mattleaverton.com/">
+<img id="avatar" src="http://cdn.libravatar.org/avatar/72c96378335a5f2d5dd7bfe2ac93ed6f"/>
+</a>
+<h1><a href="https://www.mattleaverton.com/">Matt Leaverton</a></h1>
+<p>Software and Electronics.</p>
+<p>Currently Senior Software Engineer at <a href="https://www.glowforge.com/" target="_blank">Glowforge</a></p>
+<div id="social-information">
+Connect with me:
+<div id="socials">
+<a href="https://github.com/mattleaverton" target="_blank" title="mattleaverton on Github">
+<i class="fa fa-github"></i>
+</a>
+<a href="https://www.linkedin.com/in/mattleaverton" target="_blank" title="mattleaverton on LinkedIn">
+<i class="fa fa-linkedin"></i>
+</a>
+<a href="https://twitter.com/mattleaverton" target="_blank" title="mattleaverton on Twitter">
+<i class="fa fa-twitter"></i>
+</a>
+<a href="https://www.mattleaverton.com/feeds/all.atom.xml" title="Atom feed">
+<i class="fa fa-rss"></i>
+</a>
+</div> </div>
+</div> </div>
+<div>
+<div id="page-content">
+<section class="body" id="content">
+<header>
+<h1 class="entry-title">
+<a href="https://www.mattleaverton.com/posts/2023/Aug/30/perusing-spotify-streaming-data" rel="bookmark" title="Permalink to Perusing Spotify Streaming Data">Perusing Spotify Streaming Data</a></h1>
+</header>
+<div class="post-info">
+<ul>
+<li><time class="published" datetime="2023-08-30T21:35:00-05:00">
+      30 August 2023
+    </time></li>
+</ul>
+<div class="tags">
+        Tags:
+            <a href="https://www.mattleaverton.com/tag/software.html">software</a>
+<a href="https://www.mattleaverton.com/tag/sql.html">sql</a>
+</div>
+</div><!-- /.post-info -->
+<div class="entry-content">
+<p>I found how to download my full streaming history from Spotify! Let's dig in to see what is inside.</p>
+<h2>Get the Data</h2>
+<p>Go to the <a href="https://www.spotify.com/us/account/privacy/" target="_blank">Spotify account privacy page</a> and scroll to the bottom.
+At the time of this writing, there are three request forms available - Account data, Technical log information, and 
+Extended streaming history. Check the box under Extended streaming history and click request data. Spotify estimates
+30 days until it is ready - they emailed me with a download link a week or two after the request. </p>
+<p>The data package I received has a README PDF and several JSON files covering video (unclear why this exists)
+and audio streaming history. My history goes from Sept 24, 2011 (Mansard Roof by Vampire Weekend) 
+through Aug 24, 2023 in 4 JSON files.</p>
+<h2>Explore the Data - Setup</h2>
+<p>To explore the data, I took the interesting JSON fields and built a schema for SQLite to let me learn
+what I wanted to from my data. The following python script loads each JSON file, walks through each streaming
+entry to grab the useful fields, then inserts the records into a new SQLite database.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="n">DATABASE</span> <span class="o">=</span> <span class="s1">'database.db'</span>
+<span class="n">pth</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'&lt;somewhere on windows&gt;\my_spotify_data_extended_history\MyData'</span>
+
+<span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">pth</span><span class="p">)</span>
+<span class="c1"># Audio only, please no video data</span>
+<span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">f</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'.json'</span> <span class="ow">and</span> <span class="s1">'Audio'</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">DATABASE</span><span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">row_factory</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Row</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">'''</span>
+<span class="s1">CREATE TABLE IF NOT EXISTS song (</span>
+<span class="s1">    id INTEGER PRIMARY KEY AUTOINCREMENT,</span>
+<span class="s1">    track_name TEXT NOT NULL,</span>
+<span class="s1">    artist_name TEXT,</span>
+<span class="s1">    album_name TEXT,</span>
+<span class="s1">    shuffle INTEGER,</span>
+<span class="s1">    skipped INTEGER,</span>
+<span class="s1">    ms_played INTEGER,</span>
+<span class="s1">    created_at TIMESTAMP UNIQUE</span>
+<span class="s1">);</span>
+<span class="s1">'''</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pth</span><span class="p">,</span> <span class="n">file</span><span class="p">),</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">created_at</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s1">'ts'</span><span class="p">]</span>
+            <span class="n">ms_played</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s1">'ms_played'</span><span class="p">]</span>
+            <span class="n">track_name</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s1">'master_metadata_track_name'</span><span class="p">]</span>
+            <span class="n">artist_name</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s1">'master_metadata_album_artist_name'</span><span class="p">]</span>
+            <span class="n">album_name</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s1">'master_metadata_album_album_name'</span><span class="p">]</span>
+            <span class="n">shuffle</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s1">'shuffle'</span><span class="p">]</span>
+            <span class="n">skipped</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s1">'skipped'</span><span class="p">]</span>
+
+            <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">'INSERT or IGNORE INTO song (created_at, ms_played, track_name, '</span>
+                      <span class="s1">'artist_name, album_name, shuffle, skipped) '</span> 
+                      <span class="s1">'VALUES (?, ?, ?, ?, ?, ?, ?);'</span><span class="p">,</span> 
+                      <span class="p">(</span><span class="n">created_at</span><span class="p">,</span> <span class="n">ms_played</span><span class="p">,</span> <span class="n">track_name</span><span class="p">,</span> <span class="n">artist_name</span><span class="p">,</span>
+                       <span class="n">album_name</span><span class="p">,</span> <span class="n">shuffle</span><span class="p">,</span> <span class="n">skipped</span><span class="p">))</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<p>And with that, we're in. 12 years of audio data at my fingertips.</p>
+<h2>Explore the Data - In Earnest</h2>
+<p>Using the incredible and infinitely useful <a href="https://www.mattleaverton.com/posts/2023/Jul/06/using-db-browser-for-sqlite" target="_blank">DB Browser for SQLite</a>,
+I have been able to explore the data and find all sorts of fun information.</p>
+<h3>Total hours streamed</h3>
+<p>3929 hours streamed over 12 years - in those 12 years, I have spent 163 full days listening to music on Spotify. </p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="ss">"%.2f"</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">ms_played</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3600000</span><span class="p">.)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">hours</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">song</span>
+</code></pre></div>
+<h3>Tracks streamed and total hours listened per year:</h3>
+<p>Peaked in 2015 with 509, but well on my way in 2023 with 438 already.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="ss">"%.2f"</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">ms_played</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3600000</span><span class="p">.)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">hours</span><span class="p">,</span>
+<span class="w">    </span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y'</span><span class="p">,</span><span class="w"> </span><span class="n">created_at</span><span class="p">)</span><span class="w"> </span><span class="k">year</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">song</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span>
+</code></pre></div>
+<blockquote>
+<p>Thanks to <a href="https://www.designcise.com/web/tutorial/how-to-group-by-month-and-year-in-sqlite" target="_blank">Designcise</a>
+on how to access the year from timestamps in Sqlite.</p>
+</blockquote>
+<h3>Who is my top artist by streaming time?</h3>
+<p><a href="https://en.wikipedia.org/wiki/Brian_Eno" target="_blank">Brian Eno</a> for the win with a whopping 949 hours. 
+Mr Eno and I have spent well over a month solid together at 40 complete days of music.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">artist_name</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">count</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">ms_played</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3600000</span><span class="p">.</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">hours</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">song</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="n">artist_name</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="n">hours</span><span class="w"> </span><span class="k">DESC</span>
+</code></pre></div>
+<h3>Top track from Brian Eno?</h3>
+<p><a href="https://en.wikipedia.org/wiki/Thursday_Afternoon" target="_blank">Thursday Afternoon</a> with 419 streams
+for 674 hours (this is my study/work/chill jam of all time as noted already <a href="https://www.mattleaverton.com/pages/about.html" target="_blank">here</a>)</p>
+<p>The song is exactly one hour long, so that math does not quite add up. My hypothesis is that this is due to me
+restarting the song to near the beginning using the progress slider instead of the track skip buttons, which
+must not register as a new stream.</p>
+<p>Second place is <a href="https://en.wikipedia.org/wiki/Reflection_(Brian_Eno_album)" target="_blank">Reflection</a>
+with 162 streams for 244 hours.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">track_name</span><span class="p">,</span>
+<span class="w">    </span><span class="n">artist_name</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">count</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">ms_played</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3600000</span><span class="p">.</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">hours</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">song</span>
+<span class="k">WHERE</span>
+<span class="w">    </span><span class="n">artist_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">"Brian Eno"</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="n">track_name</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="n">hours</span><span class="w"> </span><span class="k">DESC</span>
+</code></pre></div>
+<h3>Top 5 artists by stream count</h3>
+<ol>
+<li><a href="https://disasterpeace.com/music" target="_blank">Disasterpeace</a> - <strong>1376</strong></li>
+<li><a href="https://en.wikipedia.org/wiki/Brian_Eno" target="_blank">Brian Eno</a> - <strong>1106</strong></li>
+<li><a href="https://www.youtube.com/user/qumumusic" target="_blank">Qumu</a> - <strong>946</strong></li>
+<li><a href="https://en.wikipedia.org/wiki/Hans_Zimmer" target="_blank">Hans Zimmer</a> - <strong>899</strong></li>
+<li><a href="https://en.wikipedia.org/wiki/Big_Giant_Circles" target="_blank">Big Giant Circles</a> - <strong>775</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">artist_name</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">count</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">ms_played</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3600000</span><span class="p">.</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">hours</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">song</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="n">artist_name</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span>
+<span class="w">    </span><span class="k">count</span><span class="w"> </span><span class="k">DESC</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span>
+</code></pre></div>
+<h2>Who knows what other goodies await?</h2>
+<p>I plan to keep digging to see what I can unearth in my listening habits. I hope to rediscover some artists
+and albums from my early streaming years that have fallen off my map.</p>
+<p>I also want to bring this data online in a searchable, filterable, chartable fashion - brainstorming what 
+that would take.</p>
+<p>TBD on how long Spotify enforces between requests - maybe I can refresh my data every 6 months or so.</p>
+</div><!-- /.entry-content -->
+</section>
+</div>
+<footer class="body" id="footer">
+<address class="vcard body" id="about">
+<a href="https://github.com/mattleaverton/website-tools" target="_blank">Open Source.</a> Powered by <a href="https://getpelican.com/" target="_blank">Pelican</a> and <a href="https://www.python.org/" target="_blank">Python</a>.
+                </address><!-- /#about -->
+</footer><!-- /#contentinfo -->
+</div>
+</div>
+</body>
+</html>
