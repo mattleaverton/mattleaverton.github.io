@@ -74,7 +74,8 @@ At the time of this writing, there are three request forms available - Account d
 Extended streaming history. Check the box under Extended streaming history and click request data. Spotify estimates
 30 days until it is ready - they emailed me with a download link a week or two after the request. </p>
 <p>The data package I received has a README PDF and several JSON files covering video (unclear why this exists)
-and audio streaming history. My history goes from Sept 24, 2011 (Mansard Roof by Vampire Weekend) 
+and audio streaming history. My history goes from Sept 24, 2011 
+(<a href="https://open.spotify.com/track/30CU4qvNUUtd8GN4zDV5Oz" target="_blank">Mansard Roof</a> by Vampire Weekend) 
 through Aug 24, 2023 in 4 JSON files.</p>
 <h2>Explore the Data - Setup</h2>
 <p>To explore the data, I took the interesting JSON fields and built a schema for SQLite to let me learn
@@ -155,7 +156,7 @@ I have been able to explore the data and find all sorts of fun information.</p>
 on how to access the year from timestamps in Sqlite.</p>
 </blockquote>
 <h3>Who is my top artist by streaming time?</h3>
-<p><a href="https://en.wikipedia.org/wiki/Brian_Eno" target="_blank">Brian Eno</a> for the win with a whopping 949 hours. 
+<p><a href="https://open.spotify.com/artist/7MSUfLeTdDEoZiJPDSBXgi" target="_blank">Brian Eno</a> for the win with a whopping 949 hours. 
 Mr Eno and I have spent well over a month solid together at 40 complete days of music.</p>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
 <span class="w">    </span><span class="n">artist_name</span><span class="p">,</span>
@@ -168,12 +169,12 @@ Mr Eno and I have spent well over a month solid together at 40 complete days of 
 <span class="w">    </span><span class="n">hours</span><span class="w"> </span><span class="k">DESC</span>
 </code></pre></div>
 <h3>Top track from Brian Eno?</h3>
-<p><a href="https://en.wikipedia.org/wiki/Thursday_Afternoon" target="_blank">Thursday Afternoon</a> with 419 streams
+<p><a href="https://open.spotify.com/album/6AKF0REZoFiXMorWDpSiZt" target="_blank">Thursday Afternoon</a> with 419 streams
 for 674 hours (this is my study/work/chill jam of all time as noted already <a href="https://www.mattleaverton.com/pages/about.html" target="_blank">here</a>)</p>
 <p>The song is exactly one hour long, so that math does not quite add up. My hypothesis is that this is due to me
 restarting the song to near the beginning using the progress slider instead of the track skip buttons, which
 must not register as a new stream.</p>
-<p>Second place is <a href="https://en.wikipedia.org/wiki/Reflection_(Brian_Eno_album)" target="_blank">Reflection</a>
+<p>Second place is <a href="https://open.spotify.com/track/0YITCj5hDVGfGuL9DguTg8" target="_blank">Reflection</a>
 with 162 streams for 244 hours.</p>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
 <span class="w">    </span><span class="n">track_name</span><span class="p">,</span>
@@ -190,11 +191,11 @@ with 162 streams for 244 hours.</p>
 </code></pre></div>
 <h3>Top 5 artists by stream count</h3>
 <ol>
-<li><a href="https://disasterpeace.com/music" target="_blank">Disasterpeace</a> - <strong>1376</strong></li>
-<li><a href="https://en.wikipedia.org/wiki/Brian_Eno" target="_blank">Brian Eno</a> - <strong>1106</strong></li>
-<li><a href="https://www.youtube.com/user/qumumusic" target="_blank">Qumu</a> - <strong>946</strong></li>
-<li><a href="https://en.wikipedia.org/wiki/Hans_Zimmer" target="_blank">Hans Zimmer</a> - <strong>899</strong></li>
-<li><a href="https://en.wikipedia.org/wiki/Big_Giant_Circles" target="_blank">Big Giant Circles</a> - <strong>775</strong></li>
+<li><a href="https://open.spotify.com/artist/7rSMEcqv4Ez0OLgJKDjrvq" target="_blank">Disasterpeace</a> - <strong>1376</strong></li>
+<li><a href="https://open.spotify.com/artist/7MSUfLeTdDEoZiJPDSBXgi" target="_blank">Brian Eno</a> - <strong>1106</strong></li>
+<li><a href="https://open.spotify.com/artist/0LzeyDrlLtuyBqMSBN4z3U" target="_blank">Qumu</a> - <strong>946</strong></li>
+<li><a href="https://open.spotify.com/artist/0YC192cP3KPCRWx8zr8MfZ" target="_blank">Hans Zimmer</a> - <strong>899</strong></li>
+<li><a href="https://open.spotify.com/artist/6xgUHoQfcHv3MuB9I9z6RO" target="_blank">Big Giant Circles</a> - <strong>775</strong></li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
 <span class="w">    </span><span class="n">artist_name</span><span class="p">,</span>
