@@ -2,25 +2,24 @@
 
 <html lang="en">
 <head>
-<title>Matt Leaverton - iPhone Mic</title>
+<title>Matt Leaverton - Add Web Analytics in 10 Minutes with Goatcounter</title>
 <meta charset="utf-8"/>
 <meta content="Pelican" name="generator"/>
 <link href="https://www.mattleaverton.com/feeds/all.atom.xml" rel="alternate" title="Matt Leaverton Full Atom Feed" type="application/atom+xml"/>
-<link href="https://www.mattleaverton.com/feeds/projects.atom.xml" rel="alternate" title="Matt Leaverton Categories Atom Feed" type="application/atom+xml"/>
+<link href="https://www.mattleaverton.com/feeds/writing.atom.xml" rel="alternate" title="Matt Leaverton Categories Atom Feed" type="application/atom+xml"/>
 <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" rel="stylesheet"/>
 <link href="https://www.mattleaverton.com/theme/css/style.min.css?338c5f90" rel="stylesheet"/>
 <script async="" data-goatcounter="https://swampdev.goatcounter.com/count" src="//gc.zgo.at/count.js"></script>
-<meta content="electronics" name="tags"/>
-<meta content="music" name="tags"/>
-<meta content="External mic for iPhone" name="description"/>
+<meta content="software" name="tags"/>
+<meta content="infra" name="tags"/>
 </head>
 <body>
 <nav class="main-nav">
 <ul>
 <li><a href="https://www.mattleaverton.com/pages/about.html">About</a></li>
-<li class="active"><a href="https://www.mattleaverton.com/category/projects.html">Projects</a></li>
+<li><a href="https://www.mattleaverton.com/category/projects.html">Projects</a></li>
 <li><a href="https://www.mattleaverton.com/category/reading.html">Reading</a></li>
-<li><a href="https://www.mattleaverton.com/category/writing.html">Writing</a></li>
+<li class="active"><a href="https://www.mattleaverton.com/category/writing.html">Writing</a></li>
 </ul>
 </nav>
 <div class="container">
@@ -54,30 +53,35 @@ Connect with me:
 <section class="body" id="content">
 <header>
 <h1 class="entry-title">
-<a href="https://www.mattleaverton.com/posts/2012/Jun/16/iphone-mic" rel="bookmark" title="Permalink to iPhone Mic">iPhone Mic</a></h1>
+<a href="https://www.mattleaverton.com/posts/2023/Sep/03/add-web-analytics-in-10-minutes-with-goatcounter" rel="bookmark" title="Permalink to Add Web Analytics in 10 Minutes with Goatcounter">Add Web Analytics in 10 Minutes with Goatcounter</a></h1>
 </header>
 <div class="post-info">
 <ul>
-<li><time class="published" datetime="2012-06-16T13:37:00-05:00">
-      16 June 2012
+<li><time class="published" datetime="2023-09-03T21:35:00-05:00">
+      03 September 2023
     </time></li>
-<li>Project Phase:
-    <span class="phase">
-<b>Complete</b>
-</span></li>
 </ul>
 <div class="tags">
         Tags:
-            <a href="https://www.mattleaverton.com/tag/electronics.html">electronics</a>
-<a href="https://www.mattleaverton.com/tag/music.html">music</a>
+            <a href="https://www.mattleaverton.com/tag/software.html">software</a>
+<a href="https://www.mattleaverton.com/tag/infra.html">infra</a>
 </div>
-<div class="image-process-article-image-div">
-<img class="image-process-article-image" src="/images/derivatives/article-image/ios-mic-1.jpg" width="100%">
-</img></div>
 </div><!-- /.post-info -->
 <div class="entry-content">
-<p><img alt="iOS mic progress 1" class="image-process-inline" src="/images/derivatives/inline/ios-mic-3.jpg"/></p>
-<p><img alt="iOS mic progress 2" class="image-process-inline" src="/images/derivatives/inline/ios-mic-2.jpg"/></p>
+<p>No exaggeration - it took me 10 minutes or less from deciding to add analytics to my site
+with <a href="https://www.goatcounter.com/">Goatcounter</a> until it was fully setup and deployed.</p>
+<h2>Details</h2>
+<p>Goatcounter is an <a href="https://github.com/arp242/goatcounter">open-source</a>, <a href="https://www.goatcounter.com/help/privacy">privacy friendly</a>,
+<code>free for reasonable public usage</code>, and ridiculously easy to set up.</p>
+<p>I signed up for an account with my email, set the URL of my site, and chose a unique identifier, then I was
+all set to go on the Goatcounter side. I only needed to add the following lines to the base HTML template
+file for my static site, deploy, and that was absolutely it.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">data-goatcounter</span><span class="o">=</span><span class="s">"https://&lt;unique-id&gt;.goatcounter.com/count"</span>
+    <span class="na">async</span> <span class="na">src</span><span class="o">=</span><span class="s">"//gc.zgo.at/count.js"</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Now I can view page visits over time, get a summary of screen sizes, operating systems, referrals, and country
+of origins for views. It even allows me to toggle so that <a href="https://www.goatcounter.com/help/skip-dev">my own page views do not count</a>.
+Big fan so far.</p>
 </div><!-- /.entry-content -->
 </section>
 </div>
