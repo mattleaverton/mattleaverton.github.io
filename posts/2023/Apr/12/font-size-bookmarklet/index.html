@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Matt Leaverton - Font Size Bookmarklet</title>
+<meta charset="utf-8"/>
+<meta content="Pelican" name="generator"/>
+<link href="https://www.mattleaverton.com/feeds/all.atom.xml" rel="alternate" title="Matt Leaverton Full Atom Feed" type="application/atom+xml"/>
+<link href="https://www.mattleaverton.com/feeds/writing.atom.xml" rel="alternate" title="Matt Leaverton Categories Atom Feed" type="application/atom+xml"/>
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" rel="stylesheet"/>
+<link href="https://www.mattleaverton.com/theme/css/style.min.css?338c5f90" rel="stylesheet"/>
+<script async="" data-goatcounter="https://swampdev.goatcounter.com/count" src="//gc.zgo.at/count.js"></script>
+<meta content="software" name="tags"/>
+<meta content="til" name="tags"/>
+</head>
+<body>
+<nav class="main-nav">
+<ul>
+<li><a href="https://www.mattleaverton.com/pages/about.html">About</a></li>
+<li><a href="https://www.mattleaverton.com/category/projects.html">Projects</a></li>
+<li><a href="https://www.mattleaverton.com/category/reading.html">Reading</a></li>
+<li class="active"><a href="https://www.mattleaverton.com/category/writing.html">Writing</a></li>
+</ul>
+</nav>
+<div class="container">
+<div class="profile">
+<div class="profile">
+<a href="https://www.mattleaverton.com/">
+<img id="avatar" src="http://cdn.libravatar.org/avatar/72c96378335a5f2d5dd7bfe2ac93ed6f"/>
+</a>
+<h1><a href="https://www.mattleaverton.com/">Matt Leaverton</a></h1>
+<p>Software and Electronics.</p>
+<p>Currently Senior Software Engineer at <a href="https://www.glowforge.com/" target="_blank">Glowforge</a></p>
+<div id="social-information">
+Connect with me:
+<div id="socials">
+<a href="https://github.com/mattleaverton" target="_blank" title="mattleaverton on Github">
+<i class="fa fa-github"></i>
+</a>
+<a href="https://www.linkedin.com/in/mattleaverton" target="_blank" title="mattleaverton on LinkedIn">
+<i class="fa fa-linkedin"></i>
+</a>
+<a href="https://twitter.com/mattleaverton" target="_blank" title="mattleaverton on Twitter">
+<i class="fa fa-twitter"></i>
+</a>
+<a href="https://www.mattleaverton.com/feeds/all.atom.xml" title="Atom feed">
+<i class="fa fa-rss"></i>
+</a>
+</div> </div>
+</div> </div>
+<div>
+<div id="page-content">
+<section class="body" id="content">
+<header>
+<h1 class="entry-title">
+<a href="https://www.mattleaverton.com/posts/2023/Apr/12/font-size-bookmarklet" rel="bookmark" title="Permalink to Font Size Bookmarklet">Font Size Bookmarklet</a></h1>
+</header>
+<div class="post-info">
+<ul>
+<li><time class="published" datetime="2023-04-12T21:35:00-05:00">
+      12 April 2023
+    </time></li>
+</ul>
+<div class="tags">
+        Tags:
+            <a href="https://www.mattleaverton.com/tag/software.html">software</a>
+<a href="https://www.mattleaverton.com/tag/til.html">til</a>
+</div>
+</div><!-- /.post-info -->
+<div class="entry-content">
+<p>Messing around with bookmarklets and found this handy bookmarklet editor with some example
+bookmarklets <a href="https://www.gibney.org/bookmarklet_editor" target="_blank">here at Gibney.org</a>.
+I've been using the <code>Increase Font Size</code> one regularly when a site's text is too small
+to read comfortably - this increases the size of all fonts on the page by 25% every time you click on it.</p>
+<p>From the site linked above - here is the base javascript:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">elms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">'*'</span><span class="p">)];</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">elm</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">elms</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">cs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">elm</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cs</span><span class="p">[</span><span class="s1">'font-size'</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">elm</span><span class="p">.</span><span class="nx">oriSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">fs</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">elm</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">elms</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">elm</span><span class="p">.</span><span class="nx">oriSize</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">elm</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"px"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>And here is the bookmarklet version - make a new browser bookmark and set the following as the URL:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="o">%</span><span class="mf">7</span><span class="nx">Blet</span><span class="o">%</span><span class="mf">20</span><span class="nx">elms</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">3</span><span class="nx">D</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">5</span><span class="nx">B</span><span class="p">...</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">'*'</span><span class="p">)</span><span class="o">%</span><span class="mf">5</span><span class="nx">D</span><span class="o">%</span><span class="mf">3</span><span class="nx">B</span><span class="o">%</span><span class="mf">0</span><span class="nx">A</span><span class="o">%</span><span class="mf">0</span><span class="nx">Afor</span><span class="o">%</span><span class="mf">20</span><span class="p">(</span><span class="kd">let</span><span class="o">%</span><span class="mf">20</span><span class="nx">elm</span><span class="o">%</span><span class="mf">20</span><span class="k">of</span><span class="o">%</span><span class="mf">20</span><span class="nx">elms</span><span class="p">)</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">7</span><span class="nx">B</span><span class="o">%</span><span class="mf">0</span><span class="nx">A</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="kd">let</span><span class="o">%</span><span class="mf">20</span><span class="nx">cs</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">3</span><span class="nx">D</span><span class="o">%</span><span class="mf">20</span><span class="nx">getComputedStyle</span><span class="p">(</span><span class="nx">elm</span><span class="p">)</span><span class="o">%</span><span class="mf">3</span><span class="nx">B</span><span class="o">%</span><span class="mf">0</span><span class="nx">A</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="kd">let</span><span class="o">%</span><span class="mf">20</span><span class="nx">fs</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">3</span><span class="nx">D</span><span class="o">%</span><span class="mf">20</span><span class="nx">cs</span><span class="o">%</span><span class="mf">5</span><span class="nx">B</span><span class="s1">'font-size'</span><span class="o">%</span><span class="mf">5</span><span class="nx">D</span><span class="o">%</span><span class="mf">3</span><span class="nx">B</span><span class="o">%</span><span class="mf">0</span><span class="nx">A</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="nx">elm</span><span class="p">.</span><span class="nx">oriSize</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">3</span><span class="nx">D</span><span class="o">%</span><span class="mf">20</span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">fs</span><span class="p">)</span><span class="o">%</span><span class="mf">3</span><span class="nx">B</span><span class="o">%</span><span class="mf">0</span><span class="nx">A</span><span class="o">%</span><span class="mf">7</span><span class="nx">D</span><span class="o">%</span><span class="mf">0</span><span class="nx">A</span><span class="o">%</span><span class="mf">0</span><span class="nx">Afor</span><span class="o">%</span><span class="mf">20</span><span class="p">(</span><span class="kd">let</span><span class="o">%</span><span class="mf">20</span><span class="nx">elm</span><span class="o">%</span><span class="mf">20</span><span class="k">of</span><span class="o">%</span><span class="mf">20</span><span class="nx">elms</span><span class="p">)</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">7</span><span class="nx">B</span><span class="o">%</span><span class="mf">0</span><span class="nx">A</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="kd">let</span><span class="o">%</span><span class="mf">20</span><span class="nx">fs</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">3</span><span class="nx">D</span><span class="o">%</span><span class="mf">201.25</span><span class="o">%</span><span class="mf">20</span><span class="o">*%</span><span class="mf">20</span><span class="nx">elm</span><span class="p">.</span><span class="nx">oriSize</span><span class="o">%</span><span class="mf">3</span><span class="nx">B</span><span class="o">%</span><span class="mf">0</span><span class="nx">A</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">20</span><span class="nx">elm</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">3</span><span class="nx">D</span><span class="o">%</span><span class="mf">20</span><span class="nx">fs</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">2</span><span class="nx">B</span><span class="o">%</span><span class="mf">20</span><span class="o">%</span><span class="mf">22</span><span class="nx">px</span><span class="o">%</span><span class="mf">22</span><span class="o">%</span><span class="mf">3</span><span class="nx">B</span><span class="o">%</span><span class="mf">0</span><span class="nx">A</span><span class="o">%</span><span class="mf">7</span><span class="nx">D</span><span class="o">%</span><span class="mf">7</span><span class="nx">D</span><span class="p">)()</span>
+</code></pre></div>
+</div><!-- /.entry-content -->
+</section>
+</div>
+<footer class="body" id="footer">
+<address class="vcard body" id="about">
+<a href="https://github.com/mattleaverton/website-tools" target="_blank">Open Source.</a> Powered by <a href="https://getpelican.com/" target="_blank">Pelican</a> and <a href="https://www.python.org/" target="_blank">Python</a>.
+                </address><!-- /#about -->
+</footer><!-- /#contentinfo -->
+</div>
+</div>
+</body>
+</html>
