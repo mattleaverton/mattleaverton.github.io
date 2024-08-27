@@ -104,7 +104,8 @@ EDUCATIONS = [
 ]
 
 # Plugins and Plugin Options
-PLUGINS = ['webassets', 'avatar', 'image_process']
+PLUGINS = ['webassets', 'avatar', 'image_process', 'remove_original_images']
+PLUGIN_PATHS = ['./']
 
 IMAGE_PROCESS = {
     "article-image": ["scale_in 600 600 True"],

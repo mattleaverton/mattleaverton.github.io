@@ -81,7 +81,7 @@ usermod -aG sudo matt
 </code></pre></div>
 <p>Disable password authentication for <code>ssh</code></p>
 <div class="highlight"><pre><span></span><code>sudo vi /etc/ssh/sshd_config
-# Change the line with #PasswordAuthentication yes to PasswordAuthentication no
+<span class="gh">#</span> Change the line with #PasswordAuthentication yes to PasswordAuthentication no
 sudo systemctl restart sshd
 </code></pre></div>
 </div><!-- /.entry-content -->

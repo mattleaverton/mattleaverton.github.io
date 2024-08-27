@@ -199,14 +199,14 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "commonmark" },
-    { name = "cssmin" },
-    { name = "markdown" },
-    { name = "pelican" },
-    { name = "pelican-avatar" },
-    { name = "pelican-image-process" },
-    { name = "pelican-webassets" },
-    { name = "webassets" },
+    { name = "commonmark", specifier = ">=0.9.1" },
+    { name = "cssmin", specifier = ">=0.2.0" },
+    { name = "markdown", specifier = ">=3.7" },
+    { name = "pelican", specifier = ">=4.9.1" },
+    { name = "pelican-avatar", specifier = ">=1.0.9" },
+    { name = "pelican-image-process", specifier = ">=3.0.4" },
+    { name = "pelican-webassets", specifier = ">=2.0.0" },
+    { name = "webassets", specifier = ">=2.0" },
 ]
 
 [[package]]

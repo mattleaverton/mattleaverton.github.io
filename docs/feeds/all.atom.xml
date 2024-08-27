@@ -264,7 +264,7 @@ usermod -aG sudo matt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Disable password authentication for &lt;code&gt;ssh&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo vi /etc/ssh/sshd_config
-# Change the line with #PasswordAuthentication yes to PasswordAuthentication no
+&lt;span class="gh"&gt;#&lt;/span&gt; Change the line with #PasswordAuthentication yes to PasswordAuthentication no
 sudo systemctl restart sshd
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Writing"/><category term="software"/><category term="infra"/></entry><entry><title>Glowforge Aura Launch</title><link href="https://www.mattleaverton.com/posts/2023/Jul/25/glowforge-aura-launch" rel="alternate"/><published>2023-07-25T21:35:00-05:00</published><updated>2023-07-25T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-07-25:/posts/2023/Jul/25/glowforge-aura-launch</id><summary type="html"/><content type="html">&lt;p&gt;&lt;img alt="Glowforge Aura" class="image-process-inline" src="/images/derivatives/inline/glowforge-aura.png"/&gt;&lt;/p&gt;
 &lt;p&gt;Today the &lt;a href="https://glowforge.com/aura/main" target="_blank"&gt;Glowforge Aura&lt;/a&gt; is released to the world! This is the first 
