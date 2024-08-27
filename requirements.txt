@@ -1,0 +1,8 @@
+cssmin
+commonmark
+markdown
+pelican
+pelican-avatar
+pelican-image-process
+pelican-webassets
+webassets

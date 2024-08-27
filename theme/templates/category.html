@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+
+{% block title %}{{ SITENAME }} - {{ category }} category{% endblock %}
+
+{% block content %}
+{% if category.name == 'Projects' %}
+
+<section id="content">
+{% block content_title %}
+<h2>{{ category }}</h2>
+{% endblock %}
+
+<div id="post-list">
+  {% for article in articles %}
+  <div class="project-preview">
+    <a href="{{ SITEURL }}/{{ article.url }}">
+      <h2>{{ article.title }}</h2>
+      {% if article.cover %}
+         <div class="image-process-thumb-div"><img class="image-process-thumb" src="/{{ article.cover }}"/></div>
+      {% endif %}
+      {% if article.phase %}
+      <span class="phase" style="display: block">Phase: <b>{{ article.phase }}</b></span>
+      {% endif %}
+      <span class="post-time" style="display: block">{{ article.date|strftime('%d %B %Y') }}</span>
+      {% if article.modified %}
+      <span class="updated-time" style="display: block">Updated: {{ article.modified|strftime('%d %B %Y') }}</span>
+      {% endif %}
+      {% if article.summary %}
+      <span class="summary">{{ article.summary }}</span>
+      {% endif %}
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+</section><!-- /#content -->
+
+{% else %}
+  {{ super() }}
+{% endif %}
+
+
+{% endblock content %}
