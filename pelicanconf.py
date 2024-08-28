@@ -104,7 +104,14 @@ EDUCATIONS = [
 ]
 
 # Plugins and Plugin Options
-PLUGINS = ['webassets', 'avatar', 'image_process', 'remove_original_images', 'link_target_blank']
+PLUGINS = [
+    'webassets',
+    'avatar',
+    'image_process',
+    'remove_original_images',
+    'link_target_blank',
+    'copy_cname',
+]
 PLUGIN_PATHS = ['plugins']
 
 IMAGE_PROCESS = {
