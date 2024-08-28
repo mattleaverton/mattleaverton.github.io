@@ -70,7 +70,8 @@ Proud member of the [Guild of American Luthiers](https://luth.org/){: target=_bl
 
 ### Work History
 
-* **[Glowforge](https://www.glowforge.com/){: target=_blank}** - Senior Software Engineer - *Feb 2023 - Present*
+* **[Glowforge](https://www.glowforge.com/){: target=_blank}** - Principal Software Engineer - *Apr 2024 - Present*
+* **[Glowforge](https://www.glowforge.com/){: target=_blank}** - Senior Software Engineer - *Feb 2023 - Apr 2024*
 * **[Velentium](https://www.velentium.com/){: target=_blank}** - Staff Software Engineer - *Feb 2014 - Feb 2023*
 * **[National Instruments](https://www.ni.com/en-us.html){: target=_blank}** - Test Engineering Intern (software, electronics, system) - *May 2013 - August 2013*
 * **[University of Texas: Applied Research Labs](https://www.arlut.utexas.edu/){: target=_blank}** - Student Technician (software, electronics) - *August 2011 - September 2012*

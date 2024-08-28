@@ -44,7 +44,7 @@ SOCIAL = (('github', 'mattleaverton'),
 # Content Updates
 AVATAR_AUTHOR_EMAIL = 'mattleaverton@gmail.com'
 HEADLINE = "Software and Electronics."
-CURRENT_COMPANY_POSITION = "Senior Software Engineer"
+CURRENT_COMPANY_POSITION = "Principal Software Engineer"
 CURRENT_COMPANY_NAME = "Glowforge"
 CURRENT_COMPANY_LINK = "https://www.glowforge.com/"
 
