@@ -28,4 +28,4 @@ git lfs pull
 - manually update `.gitattributes` in future to add more file filters as necessary
 
 
-Thanks to my friend [CW](https://www.ipdb.org/search.cgi){: target=_blank} for the instructions.
+Thanks to my friend [CW](https://www.ipdb.org/search.cgi) for the instructions.

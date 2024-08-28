@@ -15,7 +15,7 @@ and a switch to know which lane the car is in.
 **Why:** Know when to change lanes for the optimal commute.
 
 ### Parts
-- [SAM-M8Q GPS Breakout Board](https://www.sparkfun.com/products/15210){: target=_blank}
-- [Teensy 4.1](https://www.pjrc.com/store/teensy41.html){: target=_blank}
+- [SAM-M8Q GPS Breakout Board](https://www.sparkfun.com/products/15210)
+- [Teensy 4.1](https://www.pjrc.com/store/teensy41.html)
 - SD Card for logging
 - USB Car Charger

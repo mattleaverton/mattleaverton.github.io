@@ -12,8 +12,8 @@ Cover: images/cnc-wide.jpg
 
 Dropbox / Etc / CNC
 
-Backed the [Smoothieboard v1](http://smoothieware.org/){: target=_blank} 
-[Kickstarter](https://www.kickstarter.com/projects/logxen/smoothieboard-the-future-of-cnc-motion-control){: target=_blank} 
+Backed the [Smoothieboard v1](http://smoothieware.org/) 
+[Kickstarter](https://www.kickstarter.com/projects/logxen/smoothieboard-the-future-of-cnc-motion-control) 
 in 2013
 
 ### Phase 1:

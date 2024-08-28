@@ -10,7 +10,7 @@ Status: published
 Phase: Complete
 
 
-[Design](https://www.chrisfinke.com/2014/05/26/i-built-a-rolling-workbench/){: target=_blank}
+[Design](https://www.chrisfinke.com/2014/05/26/i-built-a-rolling-workbench/)
 
 Jun 4, 6, 14, 2012 - built desk - the precursor - for Jonathan?
 

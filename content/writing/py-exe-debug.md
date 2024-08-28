@@ -10,13 +10,13 @@ Github: https://github.com/mattleaverton/py-exe-debugging
 
 There comes a time in every Python developer's life when they are ready for the next level: freezing scripts into
 an EXE for deployment. Much ink and blood has been shed on the topic and I have nothing to contribute directly to that
-today other than [PyInstaller](https://pyinstaller.org/en/stable/){: target=_blank} is a very reasonable tool for the
+today other than [PyInstaller](https://pyinstaller.org/en/stable/) is a very reasonable tool for the
 job.
 
 If you are still reading after that earth-shattering news, you are in for a treat. Not long after the aforementioned time comes,
 another time comes along - the EXE does not work, and you are stumped.
 
-Thanks to Jason R. Coombs and Steven Kryskalla in [this StackOverflow answer](https://stackoverflow.com/a/1396386){: target=_blank} from
+Thanks to Jason R. Coombs and Steven Kryskalla in [this StackOverflow answer](https://stackoverflow.com/a/1396386) from
 2009, here is an excellent software nugget that can ease debugging particularly sticky PyInstaller issues.
 
     :::python
@@ -57,7 +57,7 @@ unappetizing test message:
 
 Apparently you neglected to run the EXE before shipping, because you see the same message on your machine when
 you test. Time to debug. With test mode enabled, the message should come from `place_holder_baked_good` so that 
-[seems like a good place to start looking](https://github.com/mattleaverton/py-exe-debugging/blob/main/data/data_manager.py#L13){: target=_blank}. 
+[seems like a good place to start looking](https://github.com/mattleaverton/py-exe-debugging/blob/main/data/data_manager.py#L13). 
 
 Adding the code snippet from above to the code yields the following:
 
@@ -71,7 +71,7 @@ Adding the code snippet from above to the code yields the following:
         baked_good = importlib.import_module('library.test_data')
         return baked_good.TEST_STRING.format(confection)
 
-> **Note:** Play along at home with this code by getting your own copy [from Github](https://github.com/mattleaverton/py-exe-debugging){: target=_blank} 
+> **Note:** Play along at home with this code by getting your own copy [from Github](https://github.com/mattleaverton/py-exe-debugging) 
 
 Build into an EXE and run it again to find yourself in the interactive Python console
 
@@ -163,7 +163,7 @@ to process an import statement and determine if there is anything available to l
      <pyimod02_importers.FrozenImporter object at 0x000002172DA54DF0>, <class '_frozen_importlib_external.PathFinder'>]
 
 `pyimod02_importers.FrozenImporter` here is the PyInstaller path finder responsible for reporting whether an import
-statement can load any module from its bundle. On load, this finder [builds a table of contents](https://github.com/pyinstaller/pyinstaller/blob/develop/PyInstaller/loader/pyimod02_importers.py#L117){: target=_blank} containing all available 
+statement can load any module from its bundle. On load, this finder [builds a table of contents](https://github.com/pyinstaller/pyinstaller/blob/develop/PyInstaller/loader/pyimod02_importers.py#L117) containing all available 
 libraries, and we can take a peek:
 
     :::python
@@ -187,6 +187,6 @@ After fixing our dynamic import issue, `library.test_data` is now available and 
 
 ---
 
-PyInstaller provides [several official solutions](https://pyinstaller.org/en/stable/when-things-go-wrong.html){: target=_blank} 
+PyInstaller provides [several official solutions](https://pyinstaller.org/en/stable/when-things-go-wrong.html) 
 to problematic scenarios. In case those do not fit your needs, let this trick be another
 tool in your belt for debugging deployments. 

@@ -11,7 +11,7 @@ I am working on deploying a Flask app in Docker and ran into an issue where the 
 
 ### The Issue
 To launch my `flask` app on `gunicorn` in a Docker container, I have a `boot.sh` file based on Miguel Grinberg's recommendations
-in this [Flask tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xix-deployment-on-docker-containers){: target=_blank}
+in this [Flask tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xix-deployment-on-docker-containers)
 
 ```commandline
 #!/bin/bash
@@ -40,7 +40,7 @@ But I see an issue when I launch using `gunicorn` in Docker and make the first d
 ```
 
 ### The Resolution
-Thanks to [PythonSpeed.com](https://pythonspeed.com/articles/gunicorn-in-docker/){: target=_blank} for
+Thanks to [PythonSpeed.com](https://pythonspeed.com/articles/gunicorn-in-docker/) for
 the solutions. 
 
 Changing the work directory:

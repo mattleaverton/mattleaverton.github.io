@@ -8,7 +8,7 @@ Summary:
 Status: published
 
 Messing around with bookmarklets and found this handy bookmarklet editor with some example
-bookmarklets [here at Gibney.org](https://www.gibney.org/bookmarklet_editor){: target=_blank}.
+bookmarklets [here at Gibney.org](https://www.gibney.org/bookmarklet_editor).
 I've been using the `Increase Font Size` one regularly when a site's text is too small
 to read comfortably - this increases the size of all fonts on the page by 25% every time you click on it.
 

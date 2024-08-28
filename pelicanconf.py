@@ -104,8 +104,8 @@ EDUCATIONS = [
 ]
 
 # Plugins and Plugin Options
-PLUGINS = ['webassets', 'avatar', 'image_process', 'remove_original_images']
-PLUGIN_PATHS = ['./']
+PLUGINS = ['webassets', 'avatar', 'image_process', 'remove_original_images', 'link_target_blank']
+PLUGIN_PATHS = ['plugins']
 
 IMAGE_PROCESS = {
     "article-image": ["scale_in 600 600 True"],

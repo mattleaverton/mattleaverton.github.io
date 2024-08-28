@@ -12,4 +12,4 @@ Stretch it out a little more - people want to know more about this fresh circle 
 verify its authenticity, so you update the script to disable test mode and include a 
 real circle and return some information about it.
 
-> **Note:** Play along at home with the following code by getting your own copy [from Github](https://github.com/mattleaverton/py-exe-debugging){: target=_blank} 
+> **Note:** Play along at home with the following code by getting your own copy [from Github](https://github.com/mattleaverton/py-exe-debugging) 

@@ -7,7 +7,7 @@ Authors: Matt Leaverton
 Summary:
 Status: published
 
-I have a cheap VPS from [Vultr](https://www.vultr.com/){: target=_blank} that I [have started using]({filename}vultr-for-vps.md){: target=_blank}
+I have a cheap VPS from [Vultr](https://www.vultr.com/) that I [have started using]({filename}vultr-for-vps.md){: target=_blank}
 that I plan to use to run simple Dockerized web apps for personal use that I am experimenting with. Step 1 is to get Docker!
 
 To install and set up Docker on Debian 12:

@@ -7,11 +7,11 @@ Authors: Matt Leaverton
 Summary:
 Status: draft
 
-In grade school I did a report on C.S. Lewis after reading his [sci-fi trilogy](https://en.wikipedia.org/wiki/Out_of_the_Silent_Planet){: target=_blank}.
+In grade school I did a report on C.S. Lewis after reading his [sci-fi trilogy](https://en.wikipedia.org/wiki/Out_of_the_Silent_Planet).
 I recall from whichever online, non-Wikipedia source was allowed for school projects that his primary interest/study 
 was *Philology*. The dictionary told me this was someone who loves learning or study, which is really nothing more useful than a direct translation
-of the constituent Latin roots ([high-school-Latin-flex](https://www.aclclassics.org/DesktopModules/Revindex.Dnn.RevindexStorefront/Portals/0/Gallery/6871c630-33cb-4a6f-b9ec-8cab1ac0c833.jpg){: target=_blank}
-- where my fellow [Caecilius](https://www.na4.cambridgescp.com/stage/na4/1){: target=_blank} fans at?) Either with age or a better dictionary, I see this is moreso
+of the constituent Latin roots ([high-school-Latin-flex](https://www.aclclassics.org/DesktopModules/Revindex.Dnn.RevindexStorefront/Portals/0/Gallery/6871c630-33cb-4a6f-b9ec-8cab1ac0c833.jpg)
+- where my fellow [Caecilius](https://www.na4.cambridgescp.com/stage/na4/1) fans at?) Either with age or a better dictionary, I see this is moreso
 the study of learning itself, but the idea that someone's focus can be learning still resonates with me.
 
 For an extended period of my life, I memorized license plates. I can still recall the plate from my mom's 
@@ -32,8 +32,8 @@ I take comfort in Sherlock Holmes justification (although I )
 > may help him in doing his work...It is of the highest importance, therefore, not to have useless facts elbowing out 
 > the useful ones." 
 
-Just in time learning - from [this newsletter](https://us15.campaign-archive.com/?e=07c8fead8e&u=3f4551eb6b068b6cc1ef205c1&id=8114152795){: target=_blank}
-from [Embedded Artistry](https://embeddedartistry.com/field-atlas/){: target=_blank} 
+Just in time learning - from [this newsletter](https://us15.campaign-archive.com/?e=07c8fead8e&u=3f4551eb6b068b6cc1ef205c1&id=8114152795)
+from [Embedded Artistry](https://embeddedartistry.com/field-atlas/) 
 
 > Once you have developed a solid foundation with the core skills, any additional skills or technological focuses 
 > should be learned whenever a project requires them rather than in anticipation of using the skills at some 

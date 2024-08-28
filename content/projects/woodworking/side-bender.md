@@ -12,7 +12,7 @@ Cover: images/side-bender.png
 
 Keenovo heat blanket 17-jan-2017
 
-[Inspiration](https://www.lmii.com/bending-heating/3204-bending-machine-for-guitar-sides-price-starts-at.html){: target=_blank}
+[Inspiration](https://www.lmii.com/bending-heating/3204-bending-machine-for-guitar-sides-price-starts-at.html)
 
 Dropbox Projects / Guitar has a lot of info
 

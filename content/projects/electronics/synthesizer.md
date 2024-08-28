@@ -9,7 +9,7 @@ Status: published
 Phase: Abandoned
 Cover: images/mfos-synth-1.jpg
 
-[Sound Lab Mini-Synth](http://musicfromouterspace.com/index.php?MAINTAB=SYNTHDIY&VPW=1275&VPH=920){: target=_blank} design by [Ray Wilson (Music From Outer Space)](http://musicfromouterspace.com/){: target=_blank}
+[Sound Lab Mini-Synth](http://musicfromouterspace.com/index.php?MAINTAB=SYNTHDIY&VPW=1275&VPH=920) design by [Ray Wilson (Music From Outer Space)](http://musicfromouterspace.com/)
 
 DIY transfer and etch boards
 
