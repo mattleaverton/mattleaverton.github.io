@@ -10,5 +10,4 @@ def add_target_blank(content):
         )
 
 def register():
-    print('registering blank targeter')
     signals.content_object_init.connect(add_target_blank)

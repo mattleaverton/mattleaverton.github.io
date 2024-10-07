@@ -10,7 +10,7 @@ Status: published
 
 | Book | Author | Month | Format | Notes |
 | --- | --- | --- | --- | --- |
-| The Fated Sky | Mary Robinette Kowal | January | Hardcooy |  |
+| The Fated Sky | Mary Robinette Kowal | January | Hardcopy |  |
 | The Adventures of Amina Al-Sirafi | Shannon Chakraborty | January | Audiobook |  |
 | The Last Town | Blake Crouch | January | Audiobook |  |
 | The Hotel Nantucket | Elin Hilderbrand | January | Audiobook |  |
@@ -79,3 +79,20 @@ Status: published
 | The Paradox Hotel | Rob Hart | August | Audiobook |  |
 | Mystery Guest | Nita Prose | August | Hardcopy |  |
 | Lies and Weddings | Kevin Kwan | August | Audiobook |  |
+| The Secret Lives of Video Games | S.E. Abramson | August | Hardcopy |  |
+| Borne | Jeff Vandermeer | September | Hardcopy |  |
+| The Lightning Thief | Rick Riordan | September | Audiobook |  |
+| Personal | Lee Child | September | Audiobook |  |
+| The Sea of Monsters | Rick Riordan | September | Audiobook |  |
+| The Galaxy and the Ground Within | Becky Chambers | September | Audiobook |  |
+| Ninth House | Leigh Bardugo | September | Hardcopy |  |
+| The Titan's Curse | Rick Riordan | September | Audiobook |  |
+| Engineering Management for the Rest of Us | Sarah Drasner | September | Hardcopy |  |
+| Yellowface | R.F. Kuang | September | Audiobook |  |
+| The Wife Upstairs | Freida McFadden | September | Audiobook |  |
+| The Affair | Lee Child | September | Audiobook |  |
+| The Battle of the Labyrinth | Rick Riordan | September | Audiobook |  |
+| I'm Glad My Mom Died | Jennette McCurdy | September | Audiobook | Book club |
+| The Last Olympian | Rick Riordan | September | Audiobook |  |
+| The E-Myth Revisited | Michael E Gerber | September | Hardcopy |  |
+| The Unfortunate Side Effects of Heartbreak and Magic | Breanne Randall | October | Audiobook |  |

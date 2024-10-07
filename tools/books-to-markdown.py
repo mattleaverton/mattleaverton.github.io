@@ -6,9 +6,10 @@ import csv
 import os
 
 header_printed = False
-desktop = os.path.join(os.path.expanduser('~'), 'Desktop')
+location = r"C:\sw\crud-book-track\data"
+# desktop = os.path.join(os.path.expanduser('~'), 'Desktop')
 csv_file = 'Books 2024.csv'
-with open(os.path.join(desktop, csv_file), 'r') as f:
+with open(os.path.join(location, csv_file), 'r') as f:
     reader = csv.reader(f)
     for row in reader:
         if len(row) == 5:

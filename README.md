@@ -17,8 +17,10 @@ FYI: prepare site content to publish with:
 - TIL 16-sep you can use es modules in vanilla js
 
 ## TODO
+- active sqlite exploration of books; download a copy of the sqlite db, copy to in-memory, run wild
+- static charts/graphs for reading pages; make a master on the top level reading page
 - main page to article page shifts alignment of image
-- automatically append `{: target=_blank}` to every link
+- ~~automatically append `{: target=_blank}` to every link~~
 - automatically add/change an update time on article modification
     - mechanism for displaying/explaining later edits 
 - the gray bar at the top of the page is thin and can be scrolled above on many platforms
