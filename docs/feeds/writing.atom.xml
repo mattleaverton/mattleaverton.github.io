@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Matt Leaverton - Writing</title><link href="https://www.mattleaverton.com/" rel="alternate"/><link href="https://www.mattleaverton.com/feeds/writing.atom.xml" rel="self"/><id>https://www.mattleaverton.com/</id><updated>2023-09-03T21:35:00-05:00</updated><entry><title>Add Web Analytics in 10 Minutes with Goatcounter</title><link href="https://www.mattleaverton.com/posts/2023/Sep/03/add-web-analytics-in-10-minutes-with-goatcounter" rel="alternate"/><published>2023-09-03T21:35:00-05:00</published><updated>2023-09-03T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-09-03:/posts/2023/Sep/03/add-web-analytics-in-10-minutes-with-goatcounter</id><summary type="html"/><content type="html">&lt;p&gt;No exaggeration - it took me 10 minutes or less from deciding to add analytics to my site
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Matt Leaverton - Writing</title><link href="https://www.mattleaverton.com/" rel="alternate"/><link href="https://www.mattleaverton.com/feeds/writing.atom.xml" rel="self"/><id>https://www.mattleaverton.com/</id><updated>2024-04-05T21:35:00-05:00</updated><entry><title>Glowforge Spark Launch</title><link href="https://www.mattleaverton.com/posts/2024/Apr/05/glowforge-spark-launch" rel="alternate"/><published>2024-04-05T21:35:00-05:00</published><updated>2024-04-05T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2024-04-05:/posts/2024/Apr/05/glowforge-spark-launch</id><summary type="html"/><content type="html">&lt;p&gt;&lt;img alt="Glowforge Spark" class="image-process-inline" src="/images/derivatives/inline/glowforge-spark.png"/&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://glowforge.com/b/craft"&gt;Glowforge Spark&lt;/a&gt; (the &lt;a href="https://www.mattleaverton.com/posts/2023/Jul/25/glowforge-aura-launch" target="_blank"&gt;Aura&lt;/a&gt;'s baby sibling) is out in the wild! Fun to work on this with the  &lt;a href="https://www.mattleaverton.com/posts/2023/Feb/15/career-update-glowforge" target="_blank"&gt;Glowforge&lt;/a&gt; team and get this fun little fellow
+into people's hands.&lt;/p&gt;</content><category term="Writing"/><category term="work"/></entry><entry><title>Add Web Analytics in 10 Minutes with Goatcounter</title><link href="https://www.mattleaverton.com/posts/2023/Sep/03/add-web-analytics-in-10-minutes-with-goatcounter" rel="alternate"/><published>2023-09-03T21:35:00-05:00</published><updated>2023-09-03T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-09-03:/posts/2023/Sep/03/add-web-analytics-in-10-minutes-with-goatcounter</id><summary type="html"/><content type="html">&lt;p&gt;No exaggeration - it took me 10 minutes or less from deciding to add analytics to my site
 with &lt;a href="https://www.goatcounter.com/" target="_blank"&gt;Goatcounter&lt;/a&gt; until it was fully setup and deployed.&lt;/p&gt;
 &lt;h2&gt;Details&lt;/h2&gt;
 &lt;p&gt;Goatcounter is an &lt;a href="https://github.com/arp242/goatcounter" target="_blank"&gt;open-source&lt;/a&gt;, &lt;a href="https://www.goatcounter.com/help/privacy" target="_blank"&gt;privacy friendly&lt;/a&gt;,
@@ -286,7 +288,31 @@ Tacoma, WA and had a phenomenal time.&lt;/p&gt;
 &lt;li&gt;Beautiful weather and a place to stay with view of the water&lt;/li&gt;
 &lt;li&gt;Lots of sushi and curry&lt;/li&gt;
 &lt;/ul&gt;</content><category term="Writing"/><category term="luthier"/></entry><entry><title>Using DB Browser for SQlite</title><link href="https://www.mattleaverton.com/posts/2023/Jul/06/using-db-browser-for-sqlite" rel="alternate"/><published>2023-07-06T21:35:00-05:00</published><updated>2023-07-06T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-07-06:/posts/2023/Jul/06/using-db-browser-for-sqlite</id><summary type="html"/><content type="html">&lt;p&gt;The greatest tool for any work with Sqlite is &lt;a href="https://sqlitebrowser.org/" target="_blank"&gt;DB Browser for SQlite&lt;/a&gt;. An incredibly
-straightforward and useful GUI for viewing your tables, browsing data, and testing out queries. 10/10.&lt;/p&gt;</content><category term="Writing"/><category term="software"/><category term="sql"/></entry><entry><title>Font Size Bookmarklet</title><link href="https://www.mattleaverton.com/posts/2023/Apr/12/font-size-bookmarklet" rel="alternate"/><published>2023-04-12T21:35:00-05:00</published><updated>2023-04-12T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-04-12:/posts/2023/Apr/12/font-size-bookmarklet</id><summary type="html"/><content type="html">&lt;p&gt;Messing around with bookmarklets and found this handy bookmarklet editor with some example
+straightforward and useful GUI for viewing your tables, browsing data, and testing out queries. 10/10.&lt;/p&gt;</content><category term="Writing"/><category term="software"/><category term="sql"/></entry><entry><title>PyTexas 2024</title><link href="https://www.mattleaverton.com/posts/2023/Apr/20/pytexas-2024" rel="alternate"/><published>2023-04-20T21:35:00-05:00</published><updated>2023-04-20T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-04-20:/posts/2023/Apr/20/pytexas-2024</id><summary type="html"/><content type="html">&lt;p&gt;This past weekend I attended &lt;a href="https://www.pytexas.org/" target="_blank"&gt;PyTexas&lt;/a&gt; 2024 in Austin.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Highlights&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Keynote by Lynn Root&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=rAMLQkY7TZM" target="_blank"&gt;YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Jason Koo&lt;ul&gt;
+&lt;li&gt;Anarchy to Order - Organizing assorted data with Python and LLMs&lt;/li&gt;
+&lt;li&gt;Learning about Neo4j and graph databases&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=XvzdY0mvikg" target="_blank"&gt;YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Moshe Zadka&lt;ul&gt;
+&lt;li&gt;Iterate, Iterate, Iterate! (lessons in iterators)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=WMK7pTOdECQ" target="_blank"&gt;YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Peter Sobot&lt;ul&gt;
+&lt;li&gt;Working with Audio in Python feat. Pedalboard&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=fI8cbEsxz8I" target="_blank"&gt;YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Again - getting to spend time at the wonderful &lt;a href="https://library.austintexas.gov/central-library" target="_blank"&gt;Austin Central Library&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Writing"/><category term="software"/><category term="python"/></entry><entry><title>Font Size Bookmarklet</title><link href="https://www.mattleaverton.com/posts/2023/Apr/12/font-size-bookmarklet" rel="alternate"/><published>2023-04-12T21:35:00-05:00</published><updated>2023-04-12T21:35:00-05:00</updated><author><name>Matt Leaverton</name></author><id>tag:www.mattleaverton.com,2023-04-12:/posts/2023/Apr/12/font-size-bookmarklet</id><summary type="html"/><content type="html">&lt;p&gt;Messing around with bookmarklets and found this handy bookmarklet editor with some example
 bookmarklets &lt;a href="https://www.gibney.org/bookmarklet_editor" target="_blank"&gt;here at Gibney.org&lt;/a&gt;.
 I've been using the &lt;code&gt;Increase Font Size&lt;/code&gt; one regularly when a site's text is too small
 to read comfortably - this increases the size of all fonts on the page by 25% every time you click on it.&lt;/p&gt;
