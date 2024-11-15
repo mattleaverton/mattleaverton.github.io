@@ -86,7 +86,10 @@ edit:
 	@bash "$(BASEDIR)/util/edit_article.sh" "$(INPUTDIR)" $(filter-out $@,$(MAKECMDGOALS))
 
 new:
-	"$(UV)" "python" "$(BASEDIR)/util/new_article.py" "$(INPUTDIR)" "$(filter-out $@,$(MAKECMDGOALS))"
+	"$(UV)" "python" "$(BASEDIR)/util/new_article.py" "$(INPUTDIR)" "$(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))"
 
 
 .PHONY: html help clean regenerate serve serve-global devserver publish github list edit new
+
+%:
+	@:
