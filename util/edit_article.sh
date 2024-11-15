@@ -25,12 +25,17 @@ with open(filepath, 'r') as f:
     content = f.read()
 
 now = datetime.now().strftime("%Y-%m-%d %H:%M")
-modified_line = f"Modified: {now}\n"
+modified_line = f"Modified: {now}"
 
 if 'Modified:' in content:
-    content = re.sub(r'Modified:.*\n', modified_line, content)
+    # Update existing Modified timestamp
+    content = re.sub(r'Modified:.*', modified_line, content)
 else:
-    content = re.sub(r'(Title:.*\n)', f'\\1{modified_line}', content)
+    # Find the Title line and insert Modified after it
+    title_match = re.search(r'(Title:.*\n)', content)
+    if title_match:
+        insert_pos = title_match.end()
+        content = content[:insert_pos] + modified_line + '\n' + content[insert_pos:]
 
 with open(filepath, 'w') as f:
     f.write(content)
