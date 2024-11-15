@@ -1,4 +1,5 @@
 PY?=
+UV?="uv run"
 PELICAN?=pelican
 PELICANOPTS=
 
@@ -42,6 +43,9 @@ help:
 	@echo '   make devserver [PORT=8000]          serve and regenerate together      '
 	@echo '   make devserver-global               regenerate and serve on 0.0.0.0    '
 	@echo '   make github                         upload the web site via gh-pages   '
+	@echo '   make list [category]                list markdown files in category    '
+	@echo '   make edit <filename>                edit existing article              '
+	@echo '   make new "Article Name"             create and edit new article        '
 	@echo '                                                                          '
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html   '
 	@echo 'Set the RELATIVE variable to 1 to enable relative urls                    '
@@ -69,11 +73,20 @@ devserver-global:
 	$(PELICAN) -lr $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS) -b 0.0.0.0
 
 publish:
-	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
+	"$(UV)" "$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
 
 github: publish
 	ghp-import -m "Generate Pelican site" -b $(GITHUB_PAGES_BRANCH) "$(OUTPUTDIR)"
 	git push origin $(GITHUB_PAGES_BRANCH)
 
+list:
+	@bash "$(BASEDIR)/util/list_articles.sh" "$(INPUTDIR)" $(filter-out $@,$(MAKECMDGOALS))
 
-.PHONY: html help clean regenerate serve serve-global devserver publish github
+edit:
+	@bash "$(BASEDIR)/util/edit_article.sh" "$(INPUTDIR)" $(filter-out $@,$(MAKECMDGOALS))
+
+new:
+	"$(UV)" "python" "$(BASEDIR)/util/new_article.py" "$(INPUTDIR)" "$(filter-out $@,$(MAKECMDGOALS))"
+
+
+.PHONY: html help clean regenerate serve serve-global devserver publish github list edit new
