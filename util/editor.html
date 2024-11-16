@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Markdown Editor</title>
+    <!-- Include EasyMDE for markdown editing -->
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+    <style>
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .metadata { display: grid; grid-template-columns: auto 1fr; gap: 10px; margin-bottom: 20px; }
+        .metadata label { text-align: right; }
+        #editor { margin-top: 20px; }
+        .toolbar { margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="metadata">
+            <label>Title:</label>
+            <input type="text" id="title">
+            <label>Date:</label>
+            <input type="text" id="date">
+            <label>Category:</label>
+            <input type="text" id="category">
+            <label>Tags:</label>
+            <input type="text" id="tags">
+            <label>Status:</label>
+            <input type="text" id="status">
+        </div>
+
+        <div class="toolbar">
+            <button onclick="saveArticle()">Save</button>
+            <input type="file" accept="image/*" onchange="handleImageUpload(this)">
+        </div>
+
+        <textarea id="editor"></textarea>
+    </div>
+
+    <script>
+        let mdeEditor;
+        let pendingImages = [];
+
+        // Initialize editor when page loads
+        window.onload = async () => {
+            // Initialize EasyMDE
+            mdeEditor = new EasyMDE({
+                element: document.getElementById('editor'),
+                spellChecker: false,
+                autosave: { enabled: true, delay: 1000 }
+            });
+
+            // Fetch article content
+            const response = await fetch('/article');
+            const data = await response.json();
+
+            // Parse metadata and content
+            const {metadata, content} = parseArticle(data.content);
+
+            // Populate fields
+            Object.entries(metadata).forEach(([key, value]) => {
+                const element = document.getElementById(key.toLowerCase());
+                if (element) element.value = value;
+            });
+
+            mdeEditor.value(content);
+        };
+
+        function parseArticle(content) {
+            // Parse metadata and content from markdown file
+            const lines = content.split('\n');
+            const metadata = {};
+            let contentStart = 0;
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                if (line.includes(':')) {
+                    const [key, value] = line.split(':').map(s => s.trim());
+                    metadata[key] = value;
+                } else if (line === '') {
+                    contentStart = i + 1;
+                    break;
+                }
+            }
+
+            return {
+                metadata,
+                content: lines.slice(contentStart).join('\n')
+            };
+        }
+
+        async function handleImageUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            // Store the full path for later processing
+            pendingImages.push(file.path);
+
+            // Create markdown image link
+            const imageLink = `![${file.name}](/images/${file.name}){: .image-process-inline}`;
+
+            // Insert at cursor position
+            const pos = mdeEditor.codemirror.getCursor();
+            mdeEditor.codemirror.replaceRange(`\n${imageLink}\n`, pos);
+        }
+
+        async function saveArticle() {
+            // Combine metadata and content
+            const metadata = {
+                Title: document.getElementById('title').value,
+                Date: document.getElementById('date').value,
+                Category: document.getElementById('category').value,
+                Tags: document.getElementById('tags').value,
+                Status: document.getElementById('status').value
+            };
+
+            const metadataText = Object.entries(metadata)
+                .map(([key, value]) => `${key}: ${value}`)
+                .join('\n');
+
+            const content = `${metadataText}\n\n${mdeEditor.value()}`;
+
+            // Save to server with image paths
+            await fetch('/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    content,
+                    images: pendingImages
+                })
+            });
+
+            // Clear pending images after successful save
+            pendingImages = [];
+            alert('Saved successfully!');
+        }
+    </script>
+</body>
+</html>
