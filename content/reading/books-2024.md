@@ -29,11 +29,11 @@ Status: published
 | Half a King | Joe Abercrombie | February | Audiobook |  |
 | The Late Show | Michael Connelly | February | Audiobook |  |
 | The Eye of the World - WOT 1 (abridged) | Robert Jordan | February | Ebook | Re-read; fan abridged by 34% || The Marriage Act | John Marrs | February | Audiobook |  |
-| The Great Hunt - WOT 2 (abridged) | Robert Jordan | February | Ebook | Re-read; fan abridged by 23% |      
-| The Dragon Reborn - WOT 3 (abridged) | Robert Jordan | February | Ebook | Re-read; fan abridged by 25% |   
+| The Great Hunt - WOT 2 (abridged) | Robert Jordan | February | Ebook | Re-read; fan abridged by 23% |
+| The Dragon Reborn - WOT 3 (abridged) | Robert Jordan | February | Ebook | Re-read; fan abridged by 25% |
 | The Poppy War | R.F. Kuang | February | Audiobook |  |
-| The Shadow Rising - WOT 4 (abridged) | Robert Jordan | February | Ebook | Re-read; fan abridged by 27% |   
-| The Fires of Heaven - WOT 5 (abridged) | Robert Jordan | February | Ebook | Re-read; fan abridged by 22% | 
+| The Shadow Rising - WOT 4 (abridged) | Robert Jordan | February | Ebook | Re-read; fan abridged by 27% |
+| The Fires of Heaven - WOT 5 (abridged) | Robert Jordan | February | Ebook | Re-read; fan abridged by 22% |
 | Space Opera | Catherynne M. Valente | February | Audiobook |  |
 | Babel | R.F. Kuang | March | Audiobook |  |
 | Lord of Chaos - WOT 6 (abridged) | Robert Jordan | March | Ebook | Re-read; fan abridged by 23% |
@@ -58,7 +58,7 @@ Status: published
 | Unsheltered | Barbara Kingsolver | May | Audiobook |  |
 | Everyone on This Train is a Suspect | Benjamin Stevenson | May | Hardcopy |  |
 | Funny Story | Emily Henry | June | Hardcopy |  |
-| A Master of Djinn | P. Djeli Clark | June | Audiobook | Recommended by Phil at Arundel Books Seattle |   
+| A Master of Djinn | P. Djeli Clark | June | Audiobook | Recommended by Phil at Arundel Books Seattle |
 | A Memory Called Empire | Arkady Martine | June | Audiobook | Recommended by Phil at Arundel Books Seattle || Through the Grinder | Cleo Coyle | June | Ebook |  |
 | Ruthless Vows | Rebecca Ross | July | Audiobook |  |
 | Shift | Hugh Howey | July | Audiobook |  |
