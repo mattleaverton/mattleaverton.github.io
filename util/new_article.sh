@@ -39,5 +39,5 @@ with open(filepath, 'w') as f:
 EOF
 fi
 
-# Open in editor
-~/Applications/$(ls ~/Applications | grep -o 'cursor.*\.AppImage$') -r --no-sandbox --disable-gpu-sandbox "$FILEPATH" 2>/dev/null
+# # Open in editor
+# ~/Applications/$(ls ~/Applications | grep -o 'cursor.*\.AppImage$') -r --no-sandbox --disable-gpu-sandbox "$FILEPATH" 2>/dev/null

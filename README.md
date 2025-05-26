@@ -14,7 +14,33 @@ FYI: prepare site content to publish with:
 - ghcr.io setup, read, write
 - certbot, nginx
 - flask behind nginx
-- TIL 16-sep you can use es modules in vanilla js
+- rejected pytexas talk?
+- pingu sound boxes
+- tiny life/work thoughts like Mike Crittendon?
+- using an llm
+- trying out desktop linux (tried in home server, windows always fights me)
+- notes from recent books
+- supernote is awesome
+- spotify api (?)
+- french cleat wall
+- cappuccino
+- the database prototyping canvas website is cool - drawdb
+- the cassette player kit I got
+- the 37 key bed adapter pcb
+- dig into the old pcb museum
+- anything from the fad project in brief/anonymized?
+- thank you note to the guy from the pressure company?
+- messing with the google books api (?)
+- TV controlling utility
+- cursor launch in linux (14-nov)
+- kicad
+- jlcpcb
+- workshopping starting a restaurant in my hometown
+- N64 power supply "fix"
+- opencv things
+- power supply control driver? would be neat to make a project of a raspberry pi connected to it? maybe some handy buttons to control it via keypad on my desk
+- Got a 3d printer
+
 
 ## TODO
 - active sqlite exploration of books; download a copy of the sqlite db, copy to in-memory, run wild
@@ -22,7 +48,7 @@ FYI: prepare site content to publish with:
 - main page to article page shifts alignment of image
 - ~~automatically append `{: target=_blank}` to every link~~
 - automatically add/change an update time on article modification
-    - mechanism for displaying/explaining later edits 
+    - mechanism for displaying/explaining later edits
 - the gray bar at the top of the page is thin and can be scrolled above on many platforms
 - need cover images for more articles or something - painfully blank
 - reading pages need more contrast between sections - everything blends
@@ -43,6 +69,10 @@ FYI: prepare site content to publish with:
 - add privacy note to about page (analytics with goatcounter, no ads, zero affiliate links - i have a job)
 - series / grouped articles
 - could not set rss up at mattleaverton.com; needed the www
+- have a way to attach articles to projects as some level of project log to show progress through time (like hackaday projects?)
+    - make the project pages as assemblies of the articles under a header
+    - can provide top level details and overviews of articles
+- local web site editor: launch web page with article text and metadata fields for GUI editing
 
 
 ## Acknowledgements
