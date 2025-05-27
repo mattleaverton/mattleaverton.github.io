@@ -14,17 +14,22 @@ FYI: prepare site content to publish with:
 - ghcr.io setup, read, write
 - certbot, nginx
 - flask behind nginx
+- TIL 16-sep-2023(?) you can use es modules in vanilla js
 - rejected pytexas talk?
+- fixing broken piano key
 - pingu sound boxes
 - tiny life/work thoughts like Mike Crittendon?
 - using an llm
+- setting up a local librechat
 - trying out desktop linux (tried in home server, windows always fights me)
 - notes from recent books
 - supernote is awesome
 - spotify api (?)
 - french cleat wall
 - cappuccino
-- the database prototyping canvas website is cool - drawdb
+- note that i worked on the meta orion headset?
+- django admin is awesome
+- the database prototyping canvas website is cool  - drawdb
 - the cassette player kit I got
 - the 37 key bed adapter pcb
 - dig into the old pcb museum
@@ -73,7 +78,7 @@ FYI: prepare site content to publish with:
     - make the project pages as assemblies of the articles under a header
     - can provide top level details and overviews of articles
 - local web site editor: launch web page with article text and metadata fields for GUI editing
-
+- images are broken
 
 ## Acknowledgements
 Based on the [Pelican simple theme](https://github.com/getpelican/pelican/tree/master/pelican/themes/simple/templates)
